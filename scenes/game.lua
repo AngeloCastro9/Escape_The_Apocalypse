@@ -5,6 +5,7 @@ composer.recycleOnSceneChange = true
 local physics = require('physics')
 physics.start()
 physics.setGravity(0, 0)
+--physics.setDrawMode("hybrid")
 
 local fundo
 local fundoGrupo = display.newGroup()
@@ -40,6 +41,7 @@ function scene:create( event )
    physics.addBody(pixel)
 
    scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 14)
+   print(scoreTexto)
    scoreTexto.x = 50
    uiGrupo:insert(scoreTexto)
 
