@@ -51,8 +51,8 @@ function scene:create( event )
    function criarVidas(quantidadeVidas)
     for i = 1, quantidadeVidas do
         vida = display.newImage('image/heart.png')
-        vida.x = (display.contentWidth - vida.width * 0.7) - (50 * i+100)
-        vida.y = display.contentHeight - vida.height * 0.7
+        vida.x = (display.contentWidth) - (50 * i+100)
+        vida.y = display.contentHeight - 955
         vidasGrupo:insert(vida)            
     end
 end
