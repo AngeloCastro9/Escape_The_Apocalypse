@@ -5,7 +5,7 @@ composer.recycleOnSceneChange = true
 local physics = require('physics')
 physics.start()
 physics.setGravity(0, 0)
---physics.setDrawMode("hybrid")
+physics.setDrawMode("hybrid")
 
 local fundo
 local fundoGrupo = display.newGroup()
@@ -41,10 +41,9 @@ function scene:create( event )
    pixel.y = display.contentHeight - 100
    pixel.name = "PIXEL"
    principalGrupo:insert(pixel)
-   physics.addBody(pixel)
+   physics.addBody(pixel, "static")
 
-   scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 20)
-   print(scoreTexto)
+   scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 30)
    scoreTexto.x = 200
    scoreTexto.y = 60
    uiGrupo:insert(scoreTexto)
@@ -52,7 +51,7 @@ function scene:create( event )
    function criarVidas(quantidadeVidas)
     for i = 1, quantidadeVidas do
         vida = display.newImage('image/heart.png')
-        vida.x = (display.contentWidth - vida.width * 0.7) - (50 * i+100) 
+        vida.x = (display.contentWidth - vida.width * 0.7) - (50 * i+100)
         vida.y = display.contentHeight - vida.height * 0.7
         vidasGrupo:insert(vida)            
     end
@@ -72,7 +71,7 @@ end
     function moverTiro()
         for a = 0, tiros.numChildren, 1 do
             if tiros[a] ~= nil and tiros[a].x ~= nil then
-                tiros[a].y = tiros[a].y - 10 
+                tiros[a].y = tiros[a].y - 15
             end            
         end
     end
@@ -100,6 +99,7 @@ end
         if(event.phase == "began") then
 
             if(event.other.name == "PIXEL") then
+                print(pixel.x)
                 event.target:removeSelf()
                 display.remove(vidasGrupo)            
                 quantidadeVidas = quantidadeVidas - 1
@@ -116,15 +116,13 @@ end
                 score = score + 1
                 scoreTexto.text = "Score: "..score
                 contadorScore = contadorScore+1
-                print(contadorScore)
-
-                if contadorScore == 1 then
-                    quantidadeVidas = quantidadeVidas + 1
-                    criarVidas(quantidadeVidas)
-                    contadorScore = 0
-                    print("aaa")
-                end
             end
+            if contadorScore == 1 and quantidadeVidas < 3  then
+                contadorScore = 0
+                quantidadeVidas = quantidadeVidas + 1
+                criarVidas(quantidadeVidas)
+            end
+            contadorScore = 0
         end
     end
     function adicionarmeteorite()
@@ -132,7 +130,7 @@ end
         meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width))
         meteorite.y = -meteorite.height
         meteorite.name = "meteorite"
-        physics.addBody(meteorite, "static")
+        physics.addBody(meteorite, "dynamic")
         meteorites:insert(meteorite)
         meteorite:addEventListener('collision', meteoriteColisao)        
     end
