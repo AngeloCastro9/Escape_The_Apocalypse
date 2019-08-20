@@ -41,7 +41,7 @@ function scene:create( event )
    pixel.y = display.contentHeight - 100
    pixel.name = "PIXEL"
    principalGrupo:insert(pixel)
-   physics.addBody(pixel, "static")
+   --physics.addBody(pixel, "static")
 
    scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 30)
    scoreTexto.x = 200
