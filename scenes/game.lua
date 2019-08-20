@@ -122,7 +122,7 @@ end
                 quantidadeVidas = quantidadeVidas + 1
                 criarVidas(quantidadeVidas)
             end
-            contadorScore = 0
+            print(contadorScore)
         end
     end
     function adicionarmeteorite()
