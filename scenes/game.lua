@@ -47,6 +47,7 @@ function scene:create( event )
 
    function criarVidas(quantidadeVidas)
         for i = 1, quantidadeVidas do
+            --print("test")
             vida = display.newImage('image/heart.png')
             vida.x = (display.contentWidth - vida.width * 0.7) - (5 * i+1) - vida.width * i + 20
             vida.y = display.contentHeight - vida.height * 0.7
@@ -68,7 +69,7 @@ function scene:create( event )
     function moverTiro()
         for a = 0, tiros.numChildren, 1 do
             if tiros[a] ~= nil and tiros[a].x ~= nil then
-                tiros[a].y = tiros[a].y - 1 
+                tiros[a].y = tiros[a].y - 10 
             end            
         end
     end
@@ -88,7 +89,7 @@ function scene:create( event )
     function movermeteorite()
         for a = 0, meteorites.numChildren, 1 do
             if meteorites[a] ~= nil and meteorites[a].x ~= nil then
-                meteorites[a].y = meteorites[a].y + 3
+                meteorites[a].y = meteorites[a].y + 10
             end            
         end
     end
