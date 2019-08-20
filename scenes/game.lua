@@ -46,14 +46,13 @@ function scene:create( event )
    uiGrupo:insert(scoreTexto)
 
    function criarVidas(quantidadeVidas)
-        for i = 1, quantidadeVidas do
-            --print("test")
-            vida = display.newImage('image/heart.png')
-            vida.x = (display.contentWidth - vida.width * 0.7) - (5 * i+1) - vida.width * i + 20
-            vida.y = display.contentHeight - vida.height * 0.7
-            vidasGrupo:insert(vida)            
-        end
-   end
+    for i = 1, quantidadeVidas do
+        vida = display.newImage('image/heart.png')
+        vida.x = (display.contentWidth - vida.width * 0.7) - (50 * i+100) 
+        vida.y = display.contentHeight - vida.height * 0.7
+        vidasGrupo:insert(vida)            
+    end
+end
    criarVidas(quantidadeVidas)
 
     function moverpixel(e)
