@@ -20,6 +20,8 @@ local meteorite
 local scoreTexto
 local score
 
+local contadorScore
+
 
 function scene:create( event )
 
@@ -27,6 +29,7 @@ function scene:create( event )
 
    quantidadeVidas = 3
    score = 0
+   contadorScore = 0
 
    fundo = display.newImage('image/background.png', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
@@ -112,6 +115,15 @@ end
                 event.other:removeSelf()
                 score = score + 1
                 scoreTexto.text = "Score: "..score
+                contadorScore = contadorScore+1
+                print(contadorScore)
+
+                if contadorScore == 1 then
+                    quantidadeVidas = quantidadeVidas + 1
+                    criarVidas(quantidadeVidas)
+                    contadorScore = 0
+                    print("aaa")
+                end
             end
         end
     end
