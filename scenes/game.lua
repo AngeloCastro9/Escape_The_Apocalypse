@@ -121,7 +121,7 @@ end
                     composer.gotoScene("scenes.gameover")
                 else 
                     pixel.alpha = 0
-                    timer.performWithDelay( 1000, restorePixel )
+                    timer.performWithDelay( 100, restorePixel )
                 end
 
             elseif(event.other.name == "TIRO") then

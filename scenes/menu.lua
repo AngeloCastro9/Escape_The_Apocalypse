@@ -17,7 +17,7 @@ function scene:create( event )
    fundo.height = display.contentHeight
    menuGrupo:insert(fundo)
 
-   titulo = display.newImage('image/logo.png', 30, 0, native.systemFontBold, 30)
+   titulo = display.newImage('image/logo.png')
    titulo.x = display.contentCenterX
    titulo.y = 130
    menuGrupo:insert(titulo)

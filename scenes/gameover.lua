@@ -8,9 +8,9 @@ function scene:create( event )
 
    local sceneGroup = self.view
 
-   fimDeJogoTexto = display.newText('FIM DE JOGO', 10, 0, native.systemFontBold, 20)
+   fimDeJogoTexto = display.newImage('image/endGame.png')
    fimDeJogoTexto.x = display.contentCenterX
-   fimDeJogoTexto.y = 100
+   fimDeJogoTexto.y = 130
    gameoverGrupo:insert(fimDeJogoTexto)
 
    botaoVoltar = display.newImage("image/backBtn.png")
