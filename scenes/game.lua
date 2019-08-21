@@ -19,7 +19,6 @@ local meteorite
 
 local scoreTexto
 local score
-
 local contadorScore
 
 

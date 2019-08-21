@@ -6,14 +6,20 @@ local menuGrupo = display.newGroup()
 
 local titulo
 local jogarBotao
+local fundo
 
 function scene:create( event )
 
    local sceneGroup = self.view
 
-   titulo = display.newText('Escape The Apocalypse', 30, 0, native.systemFontBold, 30)
+   fundo = display.newImage('image/background.png', display.contentCenterX, display.contentCenterY)
+   fundo.width = display.contentWidth
+   fundo.height = display.contentHeight
+   menuGrupo:insert(fundo)
+
+   titulo = display.newImage('image/logo.png', 30, 0, native.systemFontBold, 30)
    titulo.x = display.contentCenterX
-   titulo.y = 100
+   titulo.y = 130
    menuGrupo:insert(titulo)
 
    jogarBotao = display.newImage("image/playBtn.png")
