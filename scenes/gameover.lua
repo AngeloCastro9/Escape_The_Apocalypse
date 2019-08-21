@@ -13,6 +13,11 @@ function scene:create( event )
    fimDeJogoTexto.y = 130
    gameoverGrupo:insert(fimDeJogoTexto)
 
+   skull = display.newImage('image/skull.png')
+   skull.x = display.contentCenterX
+   skull.y = 300
+   gameoverGrupo:insert(skull)
+
    botaoVoltar = display.newImage("image/backBtn.png")
    botaoVoltar.x = display.contentCenterX
    botaoVoltar.y = display.contentCenterY
