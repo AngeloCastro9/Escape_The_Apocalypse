@@ -95,19 +95,34 @@ end
             end            
         end
     end
+
+    local function restorePixel()
+ 
+        pixel.isBodyActive = false
+        pixel.x = display.contentCenterX
+        pixel.y = display.contentHeight - 100
+        -- Fade in the pixel
+        transition.to( pixel, { alpha=1, time=4000,
+            onComplete = function()
+                pixel.isBodyActive = true
+            end
+        } )
+    end
+
     function meteoriteColisao(event)
         if(event.phase == "began") then
 
             if(event.other.name == "PIXEL") then
-                print(pixel.x)
                 event.target:removeSelf()
                 display.remove(vidasGrupo)            
                 quantidadeVidas = quantidadeVidas - 1
                 vidasGrupo = display.newGroup()
                 criarVidas(quantidadeVidas)
-
                 if quantidadeVidas == 0 then
                     composer.gotoScene("scenes.gameover")
+                else 
+                    pixel.alpha = 0
+                    timer.performWithDelay( 1000, restorePixel )
                 end
 
             elseif(event.other.name == "TIRO") then
@@ -122,7 +137,6 @@ end
                 quantidadeVidas = quantidadeVidas + 1
                 criarVidas(quantidadeVidas)
             end
-            print(contadorScore)
         end
     end
     function adicionarmeteorite()
