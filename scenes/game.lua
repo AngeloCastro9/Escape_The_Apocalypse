@@ -156,8 +156,8 @@ function scene:hide( event )
    local phase = event.phase
 
    if ( phase == "will" ) then
-       fundo:removeEventListener('touch', moverpixel, atirar)
-       --fundo:removeEventListener('tap', atirar)
+       fundo:removeEventListener('touch', moverpixel)
+       fundo:removeEventListener('tap', atirar)
        meteorite:removeEventListener('collision', meteoriteColisao) 
 
        display.remove(fundoGrupo)
