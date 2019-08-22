@@ -135,6 +135,8 @@ end
                 contadorScore = 0
                 quantidadeVidas = quantidadeVidas + 1
                 criarVidas(quantidadeVidas)
+            elseif contadorScore == 10 then
+                contadorScore = 0
             end
         end
     end
