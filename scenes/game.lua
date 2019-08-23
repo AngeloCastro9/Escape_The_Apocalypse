@@ -161,7 +161,7 @@ end
     end
     principalGrupo:insert(meteorites)
     movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
-    criarmeteoriteLoop = timer.performWithDelay(1000, adicionarmeteorite, -1)
+    criarmeteoriteLoop = timer.performWithDelay(900, adicionarmeteorite, -1)
 
 end
 
