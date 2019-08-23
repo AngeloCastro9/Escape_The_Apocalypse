@@ -20,6 +20,7 @@ local meteorite
 local scoreTexto
 local score
 local contadorScore
+local quit
 
 
 function scene:create( event )
@@ -50,12 +51,21 @@ function scene:create( event )
    function criarVidas(quantidadeVidas)
     for i = 1, quantidadeVidas do
         vida = display.newImage('image/heart.png')
-        vida.x = (display.contentWidth) - (50 * i+100)
+        vida.x = (display.contentWidth) - (50 * i+200)
         vida.y = display.contentHeight - 955
         vidasGrupo:insert(vida)            
     end
 end
    criarVidas(quantidadeVidas)
+
+   quit = display.newImage("image/HomeButton.png")
+   quit.x = display.contentWidth -180 
+   quit.y = display.contentHeight-955
+   principalGrupo:insert(quit)
+    function backToMenu()
+        composer.gotoScene("scenes.menu")
+end
+    quit:addEventListener("tap", backToMenu)
 
     function moverPixel(e)
         if(e.phase == 'began') then
