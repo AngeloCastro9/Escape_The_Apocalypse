@@ -57,14 +57,14 @@ function scene:create( event )
 end
    criarVidas(quantidadeVidas)
 
-    function moverpixel(e)
+    function moverPixel(e)
         if(e.phase == 'began') then
             lastX = e.x - pixel.x
         elseif(e.phase == 'moved') then
             pixel.x = e.x - lastX
         end
     end
-    fundo:addEventListener('touch', moverpixel)
+    fundo:addEventListener('touch', moverPixel)
 
     local tiros = display.newGroup()
     function moverTiro()
@@ -171,7 +171,7 @@ function scene:hide( event )
    local phase = event.phase
 
    if ( phase == "will" ) then
-       fundo:removeEventListener('touch', moverpixel)
+       fundo:removeEventListener('touch', moverPixel)
        fundo:removeEventListener('tap', atirar)
        meteorite:removeEventListener('collision', meteoriteColisao) 
 
