@@ -63,6 +63,7 @@ end
    quit.y = display.contentHeight-955
    principalGrupo:insert(quit)
     function backToMenu()
+        adicionarmeteorite()
         composer.gotoScene("scenes.menu")
 end
     quit:addEventListener("tap", backToMenu)
