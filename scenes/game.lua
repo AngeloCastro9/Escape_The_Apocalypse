@@ -27,6 +27,7 @@ function scene:create( event )
 
    local sceneGroup = self.view
 
+   --system.activate( "multitouch" )
    quantidadeVidas = 3
    score = 0
    contadorScore = 0
