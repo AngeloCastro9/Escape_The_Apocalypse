@@ -38,7 +38,7 @@ function scene:create( event )
 
    pixel = display.newImage("image/pixel.png")
    pixel.x = display.contentWidth/2
-   pixel.y = display.contentHeight - 100
+   pixel.y = display.contentHeight - 50
    pixel.name = "PIXEL"
    principalGrupo:insert(pixel)
    physics.addBody(pixel, "static")
@@ -110,7 +110,7 @@ end
  
         pixel.isBodyActive = false
         pixel.x = display.contentCenterX
-        pixel.y = display.contentHeight - 100
+        pixel.y = display.contentHeight - 50
         -- Fade in the pixel
         transition.to( pixel, { alpha=1, time=4000,
             onComplete = function()
