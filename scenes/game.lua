@@ -32,9 +32,9 @@ local sheetOptions_Meteorite =
 }
 local sheetOptions_Explosion =
 {
-    width = 95,
-    height = 95,
-    numFrames = 12
+    width = 200,
+    height = 150,
+    numFrames = 11
 }
 local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
 local sheet_Explosion = graphics.newImageSheet( "image/explosion.png", sheetOptions_Explosion)
