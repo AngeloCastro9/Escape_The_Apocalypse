@@ -217,6 +217,8 @@ end
         meteorite:play()
         meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width))
         meteorite.y = -meteorite.height
+        meteorite.xScale = 0.7
+        meteorite.yScale = 0.7
         meteorite.name = "meteorite"
         physics.addBody(meteorite, "dynamic")
         meteorites:insert(meteorite)
