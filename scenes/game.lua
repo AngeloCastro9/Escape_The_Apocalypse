@@ -14,7 +14,6 @@ local uiGrupo = display.newGroup()
 local vidasGrupo = display.newGroup()
 local pixel
 local quantidadeVidas
---local chefao
 local meteorite
 local explosionPixel
 local explosionMeteorite
@@ -38,18 +37,9 @@ local sheetOptions_ExplosionPixel =
     height = 150,
     numFrames = 11
 }
-local sheetOptions_ExplosionMeteorite =
-{
-    width = 253,
-    height = 253,
-    numFrames = 64
-}
 
 local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
 local sheet_ExplosionPixel = graphics.newImageSheet( "image/explosionPixel.png", sheetOptions_ExplosionPixel)
-local sheet_ExplosionMeteorite = graphics.newImageSheet( "image/explosionMeteorite.png", sheetOptions_ExplosionMeteorite )
-
-
 
 -- sequences table
 local sequences_Meteorite = {
@@ -73,18 +63,6 @@ local sequences_explosionPixel = {
         loopDirection = "forward"
     },
 }
-
-local sequences_explosionMeteorite = {
-    {
-        name = "explosionMeteorite",
-        start = 1,
-        count = 64,
-        time = 500,
-        loopCount = 0,
-        loopDirection = "forward"
-    },
-}
-
 
 function scene:create( event )
 
@@ -184,11 +162,17 @@ end
     end
 
     function removeExplosionPixel()
-        display.remove(explosionPixel)
+        if(explosionPixel ~= nil) then
+            explosionPixel:removeSelf()
+        end
+        explosionPixel = nil
     end
 
     function removeExplosionMeteorite()
-        display.remove(explosionMeteorite)
+        if(explosionMeteorite ~= nil) then
+            explosionMeteorite:removeSelf()
+        end
+        explosionMeteorite = nil
     end
 
     function meteoriteColisao(event)
@@ -214,18 +198,13 @@ end
                 end
 
             elseif(event.other.name == "TIRO") then
-                explosionMeteorite = display.newSprite( principalGrupo, sheet_ExplosionMeteorite, sequences_explosionMeteorite )
-                explosionMeteorite:setSequence()
-                explosionMeteorite:play()                
-                --explosionMeteorite.x = meteorite.x 
-                --explosionMeteorite.y = meteorite.y
-                print(explosionMeteorite.x)
-                print(meteorite.x)
-                print(meteorite.y)
+                explosionMeteorite = display.newImage('image/explosionMeteorite.png')       
+                explosionMeteorite.x = display.contentCenterX 
+                explosionMeteorite.y = display.contentCenterY
                 event.target:removeSelf()
                 event.other:removeSelf()
                 score = score + 1
-                explosionMeteoriteTimeLoop = timer.performWithDelay(1000, removeExplosionMeteorite, -1)
+                explosionMeteoriteTimeLoop = timer.performWithDelay(700, removeExplosionMeteorite, -1)
                 scoreTexto.text = "Score: "..score
                 contadorScore = contadorScore+1
             end
@@ -283,8 +262,12 @@ function scene:hide( event )
        timer.cancel(moverTiroLoop)
        timer.cancel(movermeteoriteLoop)
        timer.cancel(criarmeteoriteLoop) 
-       timer.cancel(explosionPixelTimeLoop)       
-       timer.cancel(explosionMeteoriteTimeLoop)         
+       if (explosionPixelTimeLoop ~= nil) then
+        timer.cancel(explosionPixelTimeLoop)
+       end       
+       if(explosionMeteoriteTimeLoop ~= nil) then
+        timer.cancel(explosionMeteoriteTimeLoop)  
+       end       
 
    elseif ( phase == "did" ) then
 
