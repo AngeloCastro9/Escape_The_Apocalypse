@@ -36,7 +36,7 @@ local sequences_Meteorite = {
     {
         name = "meteorite",
         start = 1,
-        count = 4,
+        count = 11,
         time = 500,
         loopCount = 0,
         loopDirection = "forward"
