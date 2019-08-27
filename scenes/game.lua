@@ -14,8 +14,9 @@ local uiGrupo = display.newGroup()
 local vidasGrupo = display.newGroup()
 local pixel
 local quantidadeVidas
-local chefao
+--local chefao
 local meteorite
+local explosion
 
 local scoreTexto
 local score
@@ -29,12 +30,31 @@ local sheetOptions_Meteorite =
     height = 398,
     numFrames = 11
 }
+local sheetOptions_Explosion =
+{
+    width = 95,
+    height = 95,
+    numFrames = 12
+}
 local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
+local sheet_Explosion = graphics.newImageSheet( "image/explosion.png", sheetOptions_Explosion)
+
 
 -- sequences table
 local sequences_Meteorite = {
     {
         name = "meteorite",
+        start = 1,
+        count = 11,
+        time = 500,
+        loopCount = 0,
+        loopDirection = "forward"
+    },
+}
+
+local sequences_Explosion = {
+    {
+        name = "explosion",
         start = 1,
         count = 11,
         time = 500,
@@ -141,12 +161,22 @@ end
         } )
     end
 
+    function removeExplosion()
+        display.remove(explosion)
+    end
+
     function meteoriteColisao(event)
         if(event.phase == "began") then
 
             if(event.other.name == "PIXEL") then
+                explosion = display.newSprite( principalGrupo, sheet_Explosion, sequences_Explosion )
+                explosion:setSequence()
+                explosion:play()
+                explosion.x = pixel.x
+                explosion.y = pixel.y-60
                 event.target:removeSelf()
-                display.remove(vidasGrupo)            
+                display.remove(vidasGrupo)   
+                explosionTimeLoop = timer.performWithDelay(500, removeExplosion, -1)         
                 quantidadeVidas = quantidadeVidas - 1
                 vidasGrupo = display.newGroup()
                 criarVidas(quantidadeVidas)
@@ -218,7 +248,8 @@ function scene:hide( event )
 
        timer.cancel(moverTiroLoop)
        timer.cancel(movermeteoriteLoop)
-       timer.cancel(criarmeteoriteLoop)                 
+       timer.cancel(criarmeteoriteLoop) 
+       timer.cancel(explosionTimeLoop)                
 
    elseif ( phase == "did" ) then
 
