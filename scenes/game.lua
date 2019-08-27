@@ -193,8 +193,8 @@ end
 
             elseif(event.other.name == "TIRO") then
                 explosionMeteorite = display.newImage('image/explosionMeteorite.png')       
-                explosionMeteorite.x = meteorite.x 
-                explosionMeteorite.y = display.contentCenterY
+                --explosionMeteorite.x = meteorite.x 
+                --explosionMeteorite.y = display.contentCenterY
                 event.target:removeSelf()
                 event.other:removeSelf()
                 score = score + 1
