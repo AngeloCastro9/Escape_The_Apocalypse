@@ -162,17 +162,11 @@ end
     end
 
     function removeExplosionPixel()
-        if(explosionPixel ~= nil) then
-            explosionPixel:removeSelf()
-        end
-        explosionPixel = nil
+        display.remove(explosionPixel)
     end
 
     function removeExplosionMeteorite()
-        if(explosionMeteorite ~= nil) then
-            explosionMeteorite:removeSelf()
-        end
-        explosionMeteorite = nil
+        display.remove(explosionMeteorite)
     end
 
     function meteoriteColisao(event)
@@ -199,7 +193,7 @@ end
 
             elseif(event.other.name == "TIRO") then
                 explosionMeteorite = display.newImage('image/explosionMeteorite.png')       
-                explosionMeteorite.x = display.contentCenterX 
+                explosionMeteorite.x = meteorite.x 
                 explosionMeteorite.y = display.contentCenterY
                 event.target:removeSelf()
                 event.other:removeSelf()
