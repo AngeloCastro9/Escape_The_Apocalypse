@@ -16,7 +16,9 @@ local pixel
 local quantidadeVidas
 --local chefao
 local meteorite
-local explosion
+local explosionPixel
+local explosionMeteorite
+local lastXMeteorite
 
 local scoreTexto
 local score
@@ -30,14 +32,23 @@ local sheetOptions_Meteorite =
     height = 398,
     numFrames = 11
 }
-local sheetOptions_Explosion =
+local sheetOptions_ExplosionPixel =
 {
     width = 200,
     height = 150,
     numFrames = 11
 }
+local sheetOptions_ExplosionMeteorite =
+{
+    width = 253,
+    height = 253,
+    numFrames = 64
+}
+
 local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
-local sheet_Explosion = graphics.newImageSheet( "image/explosion.png", sheetOptions_Explosion)
+local sheet_ExplosionPixel = graphics.newImageSheet( "image/explosionPixel.png", sheetOptions_ExplosionPixel)
+local sheet_ExplosionMeteorite = graphics.newImageSheet( "image/explosionMeteorite.png", sheetOptions_ExplosionMeteorite )
+
 
 
 -- sequences table
@@ -52,9 +63,9 @@ local sequences_Meteorite = {
     },
 }
 
-local sequences_Explosion = {
+local sequences_explosionPixel = {
     {
-        name = "explosion",
+        name = "explosionPixel",
         start = 1,
         count = 11,
         time = 500,
@@ -62,6 +73,18 @@ local sequences_Explosion = {
         loopDirection = "forward"
     },
 }
+
+local sequences_explosionMeteorite = {
+    {
+        name = "explosionMeteorite",
+        start = 1,
+        count = 64,
+        time = 500,
+        loopCount = 0,
+        loopDirection = "forward"
+    },
+}
+
 
 function scene:create( event )
 
@@ -110,7 +133,6 @@ end
     quit:addEventListener("tap", backToMenu)
 
     function moverPixel(e)
-        local variavel = display.screen
         if(e.phase == 'began') then
             lastX = e.x - pixel.x
         elseif(e.phase == 'moved') then
@@ -161,22 +183,26 @@ end
         } )
     end
 
-    function removeExplosion()
-        display.remove(explosion)
+    function removeExplosionPixel()
+        display.remove(explosionPixel)
+    end
+
+    function removeExplosionMeteorite()
+        display.remove(explosionMeteorite)
     end
 
     function meteoriteColisao(event)
         if(event.phase == "began") then
 
             if(event.other.name == "PIXEL") then
-                explosion = display.newSprite( principalGrupo, sheet_Explosion, sequences_Explosion )
-                explosion:setSequence()
-                explosion:play()
-                explosion.x = pixel.x
-                explosion.y = pixel.y-60
+                explosionPixel = display.newSprite( principalGrupo, sheet_ExplosionPixel, sequences_explosionPixel )
+                explosionPixel:setSequence()
+                explosionPixel:play()
+                explosionPixel.x = pixel.x
+                explosionPixel.y = pixel.y-60
                 event.target:removeSelf()
                 display.remove(vidasGrupo)   
-                explosionTimeLoop = timer.performWithDelay(500, removeExplosion, -1)         
+                explosionPixelTimeLoop = timer.performWithDelay(500, removeExplosionPixel, -1)         
                 quantidadeVidas = quantidadeVidas - 1
                 vidasGrupo = display.newGroup()
                 criarVidas(quantidadeVidas)
@@ -188,9 +214,18 @@ end
                 end
 
             elseif(event.other.name == "TIRO") then
+                explosionMeteorite = display.newSprite( principalGrupo, sheet_ExplosionMeteorite, sequences_explosionMeteorite )
+                explosionMeteorite:setSequence()
+                explosionMeteorite:play()                
+                --explosionMeteorite.x = meteorite.x 
+                --explosionMeteorite.y = meteorite.y
+                print(explosionMeteorite.x)
+                print(meteorite.x)
+                print(meteorite.y)
                 event.target:removeSelf()
                 event.other:removeSelf()
                 score = score + 1
+                explosionMeteoriteTimeLoop = timer.performWithDelay(1000, removeExplosionMeteorite, -1)
                 scoreTexto.text = "Score: "..score
                 contadorScore = contadorScore+1
             end
@@ -212,12 +247,11 @@ end
         meteorite.name = "meteorite"
         physics.addBody(meteorite, "dynamic")
         meteorites:insert(meteorite)
-        meteorite:addEventListener('collision', meteoriteColisao)        
+        meteorite:addEventListener('collision', meteoriteColisao)    
     end
     principalGrupo:insert(meteorites)
     movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
     criarmeteoriteLoop = timer.performWithDelay(900, adicionarmeteorite, -1)
-
 end
 
 function scene:show( event )
@@ -249,7 +283,8 @@ function scene:hide( event )
        timer.cancel(moverTiroLoop)
        timer.cancel(movermeteoriteLoop)
        timer.cancel(criarmeteoriteLoop) 
-       timer.cancel(explosionTimeLoop)                
+       timer.cancel(explosionPixelTimeLoop)       
+       timer.cancel(explosionMeteoriteTimeLoop)         
 
    elseif ( phase == "did" ) then
 
