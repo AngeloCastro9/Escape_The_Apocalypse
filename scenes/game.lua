@@ -22,6 +22,26 @@ local score
 local contadorScore
 local quit
 
+-- Configure image sheet
+local sheetOptions_Meteorite =
+{
+    width = 236,
+    height = 398,
+    numFrames = 11
+}
+local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
+
+-- sequences table
+local sequences_Meteorite = {
+    {
+        name = "meteorite",
+        start = 1,
+        count = 4,
+        time = 500,
+        loopCount = 0,
+        loopDirection = "forward"
+    },
+}
 
 function scene:create( event )
 
@@ -70,6 +90,7 @@ end
     quit:addEventListener("tap", backToMenu)
 
     function moverPixel(e)
+        local variavel = display.screen
         if(e.phase == 'began') then
             lastX = e.x - pixel.x
         elseif(e.phase == 'moved') then
@@ -153,7 +174,9 @@ end
         end
     end
     function adicionarmeteorite()
-        meteorite = display.newImage('image/meteorite.png')
+        meteorite = display.newSprite( principalGrupo, sheet_Meteorite, sequences_Meteorite )
+        meteorite:setSequence()
+        meteorite:play()
         meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width))
         meteorite.y = -meteorite.height
         meteorite.name = "meteorite"
