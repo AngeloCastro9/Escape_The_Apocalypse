@@ -5,7 +5,7 @@ composer.recycleOnSceneChange = true
 local physics = require('physics')
 physics.start()
 physics.setGravity(0, 0)
-physics.setDrawMode("hybrid")
+--physics.setDrawMode("hybrid")
 
 local fundo
 local fundoGrupo = display.newGroup()
