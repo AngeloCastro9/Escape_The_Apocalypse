@@ -129,6 +129,8 @@ end
         local tiro = display.newImage('image/shoot.png')
         tiro.x = pixel.x
         tiro.y = pixel.y - pixel.height
+        tiro.xScale = 3.5
+        tiro.yScale = 3.5
         tiro.name = 'TIRO'
         physics.addBody(tiro)    
         tiros:insert(tiro)       
