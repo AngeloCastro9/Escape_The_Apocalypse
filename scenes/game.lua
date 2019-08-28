@@ -5,7 +5,7 @@ composer.recycleOnSceneChange = true
 local physics = require('physics')
 physics.start()
 physics.setGravity(0, 0)
---physics.setDrawMode("hybrid")
+physics.setDrawMode("hybrid")
 
 local fundo
 local fundoGrupo = display.newGroup()
@@ -212,7 +212,8 @@ end
         meteorite.xScale = 0.7
         meteorite.yScale = 0.7
         meteorite.name = "meteorite"
-        physics.addBody(meteorite, "dynamic")
+        local pentagonShape = { -50, 130, 50,-110, 70,130, 26,50, -50,-80 }
+        physics.addBody(meteorite, "dynamic", { density=3.0, friction=0.8, bounce=0.3, shape=pentagonShape } )
         meteorites:insert(meteorite)
         meteorite:addEventListener('collision', meteoriteColisao)    
     end
