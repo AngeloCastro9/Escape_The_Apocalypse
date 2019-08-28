@@ -16,8 +16,6 @@ local pixel
 local quantidadeVidas
 local meteorite
 local explosionPixel
-local explosionMeteorite
-local lastXMeteorite
 
 local scoreTexto
 local score
@@ -165,10 +163,6 @@ end
         display.remove(explosionPixel)
     end
 
-    function removeExplosionMeteorite()
-        display.remove(explosionMeteorite)
-    end
-
     function meteoriteColisao(event)
         if(event.phase == "began") then
 
@@ -192,13 +186,9 @@ end
                 end
 
             elseif(event.other.name == "TIRO") then
-                --explosionMeteorite = display.newImage('image/explosionMeteorite.png')       
-                --explosionMeteorite.x = meteorite.x 
-                --explosionMeteorite.y = display.contentCenterY
                 event.target:removeSelf()
                 event.other:removeSelf()
                 score = score + 1
-                explosionMeteoriteTimeLoop = timer.performWithDelay(700, removeExplosionMeteorite, -1)
                 scoreTexto.text = "Score: "..score
                 contadorScore = contadorScore+1
             end
