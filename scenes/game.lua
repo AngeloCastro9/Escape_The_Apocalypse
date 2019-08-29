@@ -104,7 +104,7 @@ end
    principalGrupo:insert(quit)
     function backToMenu()
         adicionarmeteorite()
-        composer.gotoScene("scenes.menu")
+        composer.gotoScene("scenes.menu", { time=800, effect="crossFade" })
 end
     quit:addEventListener("tap", backToMenu)
 
@@ -181,6 +181,7 @@ end
                 vidasGrupo = display.newGroup()
                 criarVidas(quantidadeVidas)
                 if quantidadeVidas == 0 then
+                    composer.setVariable( "finalScore", score )
                     composer.gotoScene("scenes.gameover")
                 else 
                     pixel.alpha = 0
@@ -259,7 +260,7 @@ function scene:hide( event )
        end       
 
    elseif ( phase == "did" ) then
-
+        composer.removeScene( "game" )
    end
 end
 

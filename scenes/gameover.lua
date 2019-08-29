@@ -21,10 +21,12 @@ function scene:create( event )
    botaoVoltar = display.newImage("image/backBtn.png")
    botaoVoltar.x = display.contentCenterX
    botaoVoltar.y = display.contentCenterY
+   botaoVoltar.xScale = 0.2
+   botaoVoltar.yScale = 0.2
    gameoverGrupo:insert(botaoVoltar)
 
    function gotoMenu()
-    composer.gotoScene("scenes.menu")
+    composer.gotoScene("scenes.menu", { time=800, effect="crossFade" })
    end
    botaoVoltar:addEventListener("tap", gotoMenu)
 

@@ -7,6 +7,7 @@ local menuGrupo = display.newGroup()
 local titulo
 local jogarBotao
 local fundo
+local rankBotao
 
 function scene:create( event )
 
@@ -22,14 +23,29 @@ function scene:create( event )
    titulo.y = 130
    menuGrupo:insert(titulo)
 
+   rankBotao = display.newImage("image/rankBtn.png")
+   rankBotao.x = display.contentCenterX
+   rankBotao.y = display.contentCenterY+200
+   rankBotao.xScale = 0.2
+   rankBotao.yScale = 0.2
+   menuGrupo:insert(rankBotao)
+
    jogarBotao = display.newImage("image/playBtn.png")
    jogarBotao.x = display.contentCenterX
    jogarBotao.y = display.contentCenterY
+   jogarBotao.xScale = 0.2
+   jogarBotao.yScale = 0.2
    menuGrupo:insert(jogarBotao)
 
    function gotoGame()
-        composer.gotoScene("scenes.game")
+        composer.gotoScene("scenes.game", { time=800, effect="crossFade" })
    end
+
+   function gotoRank()
+      composer.gotoScene("scenes.highscores", { time=800, effect="crossFade" })
+   end
+
+   rankBotao:addEventListener("tap", gotoRank)
    jogarBotao:addEventListener("tap", gotoGame)
 
 end
@@ -52,6 +68,7 @@ function scene:hide( event )
    if ( phase == "will" ) then
        display.remove(menuGrupo)
    elseif ( phase == "did" ) then
+      composer.removeScene( "menu" )
    end
 end
 
