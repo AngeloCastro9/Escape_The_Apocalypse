@@ -3,10 +3,17 @@ local composer = require( "composer" )
 local scene = composer.newScene()
 
 local gameoverGrupo = display.newGroup()
+local gameOverSound
+local clickSound
+
 
 function scene:create( event )
 
    local sceneGroup = self.view
+   gameOverSound = audio.loadSound( "audio/gameOver.mp3" )
+   clickSound = audio.loadSound("audio/Click.wav")
+
+   audio.play( gameOverSound, { channel=1, loops=-1 })
 
    fimDeJogoTexto = display.newImage('image/endGame.png')
    fimDeJogoTexto.x = display.contentCenterX
@@ -26,7 +33,8 @@ function scene:create( event )
    gameoverGrupo:insert(botaoVoltar)
 
    function gotoMenu()
-    composer.gotoScene("scenes.menu")
+      audio.play(clickSound, { channel=2, loops=-1 })
+      composer.gotoScene("scenes.menu")
    end
    botaoVoltar:addEventListener("tap", gotoMenu)
 
@@ -50,8 +58,9 @@ function scene:hide( event )
    local phase = event.phase
 
    if ( phase == "will" ) then
-    display.remove(gameoverGrupo)
-
+      audio.stop( 1 )
+      audio.stop( 2 )
+      display.remove(gameoverGrupo)
    elseif ( phase == "did" ) then
 
    end
