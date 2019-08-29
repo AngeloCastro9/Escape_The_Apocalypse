@@ -12,6 +12,8 @@ local jogarBotao
 local fundo
 local rankBotao
 local meteorite
+local menuSound
+local clickSound
 
 local sheetOptions_Meteorite =
 {
@@ -36,6 +38,13 @@ local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions
 function scene:create( event )
 
    local sceneGroup = self.view
+   audio.reserveChannels( 1 )
+   audio.reserveChannels( 2 )
+
+   menuSound = audio.loadSound( "audio/principal.mp3" )
+   clickSound = audio.loadSound("audio/Click.wav")
+
+   audio.play( menuSound, { channel=1, loops=-1 })
 
    fundo = display.newImage('image/background.png', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
@@ -85,10 +94,15 @@ function scene:create( event )
   criarmeteoriteLoop = timer.performWithDelay(900, adicionarmeteorite, -1)
 
    function gotoGame()
-        composer.gotoScene("scenes.game")
+      audio.stop( 1 )
+      audio.play(clickSound, { channel=2, loops=-1 })
+      audio.setVolume( 1.5, { channel=2 } )
+      composer.gotoScene("scenes.game")
    end
 
    function gotoRank()
+      audio.play(clickSound, { channel=2, loops=-1 })
+      audio.setVolume( 1.5, { channel=2 } )
       composer.gotoScene("scenes.highscores")
    end
 
@@ -117,6 +131,8 @@ function scene:hide( event )
       timer.cancel(movermeteoriteLoop)
       timer.cancel(criarmeteoriteLoop) 
    elseif ( phase == "did" ) then
+      audio.stop( 2 )
+      audio.stop( 3 )
       composer.removeScene( "menu" )
    end
 end

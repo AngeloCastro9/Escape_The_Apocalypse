@@ -6,7 +6,7 @@ local scene = composer.newScene()
 composer.recycleOnSceneChange = true
 
 local menuButton
-
+local clickSound
 
 local json = require( "json" )
 
@@ -49,6 +49,7 @@ function scene:create( event )
 
 	local sceneGroup = self.view
 	
+	clickSound = audio.loadSound("audio/Click.wav")
 	loadScores()
 	
     table.insert( scoresTable, composer.getVariable( "finalScore" ) )
@@ -82,6 +83,7 @@ function scene:create( event )
 	end
 
 	function gotoMenu()
+		audio.play(clickSound, { channel=1, loops=-1 })
 		composer.gotoScene( "scenes.menu" )
 	end
 
@@ -113,6 +115,7 @@ function scene:hide( event )
 	if ( phase == "will" ) then
 		display.remove(menuButton)
 	elseif ( phase == "did" ) then
+		audio.stop( 1 )
 		composer.removeScene( "highscores" )
 	end
 end

@@ -109,10 +109,17 @@ end
     quit:addEventListener("tap", backToMenu)
 
     function moverPixel(e)
+        
         if(e.phase == 'began') then
             lastX = e.x - pixel.x
         elseif(e.phase == 'moved') then
-            pixel.x = e.x - lastX
+            local newPosition = e.x - lastX 
+            print( newPosition )
+            if(newPosition > 140 and lastX < display.contentWidth) then
+                print(lastX - pixel.x)
+                print(display.contentWidth)
+                pixel.x = e.x - lastX
+            end
         end
     end
     fundo:addEventListener('touch', moverPixel)
