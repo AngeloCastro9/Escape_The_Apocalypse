@@ -2,12 +2,34 @@ local composer = require( "composer" )
 
 local scene = composer.newScene()
 
+local backGroup = display.newGroup()
 local menuGrupo = display.newGroup()
 
 local titulo
 local jogarBotao
 local fundo
 local rankBotao
+local meteorite
+
+local sheetOptions_Meteorite =
+{
+    width = 236,
+    height = 398,
+    numFrames = 11
+}
+
+local sequences_Meteorite = {
+   {
+       name = "meteorite",
+       start = 1,
+       count = 11,
+       time = 500,
+       loopCount = 0,
+       loopDirection = "forward"
+   },
+}
+
+local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
 
 function scene:create( event )
 
@@ -16,7 +38,7 @@ function scene:create( event )
    fundo = display.newImage('image/background.png', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
    fundo.height = display.contentHeight
-   menuGrupo:insert(fundo)
+   backGroup:insert(fundo)
 
    titulo = display.newImage('image/logo.png')
    titulo.x = display.contentCenterX
@@ -36,6 +58,29 @@ function scene:create( event )
    jogarBotao.xScale = 0.2
    jogarBotao.yScale = 0.2
    menuGrupo:insert(jogarBotao)
+
+   local meteorites = display.newGroup()
+    function movermeteorite()
+        for a = 0, meteorites.numChildren, 1 do
+            if meteorites[a] ~= nil and meteorites[a].x ~= nil then
+                meteorites[a].y = meteorites[a].y + 10
+            end            
+        end
+    end
+
+   function adicionarmeteorite()
+      meteorite = display.newSprite( backGroup, sheet_Meteorite, sequences_Meteorite )
+      meteorite:setSequence()
+      meteorite:play()
+      meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width))
+      meteorite.y = -meteorite.height
+      meteorite.xScale = 0.7
+      meteorite.yScale = 0.7
+      meteorites:insert(meteorite)
+  end
+  backGroup:insert(meteorites)
+  movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
+  criarmeteoriteLoop = timer.performWithDelay(900, adicionarmeteorite, -1)
 
    function gotoGame()
         composer.gotoScene("scenes.game")
@@ -65,6 +110,9 @@ function scene:hide( event )
 
    if ( phase == "will" ) then
        display.remove(menuGrupo)
+       display.remove(meteorites) 
+       timer.cancel(movermeteoriteLoop)
+       timer.cancel(criarmeteoriteLoop) 
    elseif ( phase == "did" ) then
       composer.removeScene( "menu" )
    end
