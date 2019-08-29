@@ -1,5 +1,7 @@
 local composer = require( "composer" )
 
+composer.recycleOnSceneChange = true
+
 local scene = composer.newScene()
 
 local backGroup = display.newGroup()
@@ -109,10 +111,11 @@ function scene:hide( event )
    local phase = event.phase
 
    if ( phase == "will" ) then
-       display.remove(menuGrupo)
-       display.remove(meteorites) 
-       timer.cancel(movermeteoriteLoop)
-       timer.cancel(criarmeteoriteLoop) 
+      display.remove(backGroup)
+      display.remove(menuGrupo)
+      display.remove(meteorites) 
+      timer.cancel(movermeteoriteLoop)
+      timer.cancel(criarmeteoriteLoop) 
    elseif ( phase == "did" ) then
       composer.removeScene( "menu" )
    end
