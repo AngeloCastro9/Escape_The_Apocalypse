@@ -67,11 +67,11 @@ function scene:create( event )
 
    local sceneGroup = self.view
 
-   audio.reserveChannels( 1 )
+   audio.reserveChannels( 4 )
 
    gameSound = audio.loadSound( "audio/Game.mp3" )
 
-   audio.play( gameSound, { channel=1, loops=-1 })
+   audio.play( gameSound, { channel=4, loops=-1 })
 
    --system.activate( "multitouch" )
    quantidadeVidas = 3
@@ -271,7 +271,7 @@ function scene:hide( event )
        end       
 
    elseif ( phase == "did" ) then
-        audio.stop( 1 )
+        audio.stop( 4 )
         composer.removeScene( "game" )
    end
 end

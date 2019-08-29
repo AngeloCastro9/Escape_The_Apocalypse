@@ -95,7 +95,7 @@ function scene:create( event )
 
    function gotoGame()
       audio.stop( 1 )
-      audio.play(clickSound, { channel=2, loops=-1 })
+      audio.play(clickSound, { channel=2 })
       audio.setVolume( 1.5, { channel=2 } )
       composer.gotoScene("scenes.game")
    end
@@ -132,7 +132,6 @@ function scene:hide( event )
       timer.cancel(criarmeteoriteLoop) 
    elseif ( phase == "did" ) then
       audio.stop( 2 )
-      audio.stop( 3 )
       composer.removeScene( "menu" )
    end
 end

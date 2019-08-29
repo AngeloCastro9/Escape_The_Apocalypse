@@ -115,7 +115,6 @@ function scene:hide( event )
 	if ( phase == "will" ) then
 		display.remove(menuButton)
 	elseif ( phase == "did" ) then
-		audio.stop( 1 )
 		composer.removeScene( "highscores" )
 	end
 end
