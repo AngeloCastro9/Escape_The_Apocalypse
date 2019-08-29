@@ -38,11 +38,11 @@ function scene:create( event )
    menuGrupo:insert(jogarBotao)
 
    function gotoGame()
-        composer.gotoScene("scenes.game", { time=800, effect="crossFade" })
+        composer.gotoScene("scenes.game")
    end
 
    function gotoRank()
-      composer.gotoScene("scenes.highscores", { time=800, effect="crossFade" })
+      composer.gotoScene("scenes.highscores")
    end
 
    rankBotao:addEventListener("tap", gotoRank)
@@ -50,8 +50,6 @@ function scene:create( event )
 
 end
 
-
--- show()
 function scene:show( event )
 
    local sceneGroup = self.view

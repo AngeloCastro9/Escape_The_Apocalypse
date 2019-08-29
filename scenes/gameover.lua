@@ -26,7 +26,7 @@ function scene:create( event )
    gameoverGrupo:insert(botaoVoltar)
 
    function gotoMenu()
-    composer.gotoScene("scenes.menu", { time=800, effect="crossFade" })
+    composer.gotoScene("scenes.menu")
    end
    botaoVoltar:addEventListener("tap", gotoMenu)
 

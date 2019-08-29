@@ -104,7 +104,7 @@ end
    principalGrupo:insert(quit)
     function backToMenu()
         adicionarmeteorite()
-        composer.gotoScene("scenes.menu", { time=800, effect="crossFade" })
+        composer.gotoScene("scenes.menu")
 end
     quit:addEventListener("tap", backToMenu)
 

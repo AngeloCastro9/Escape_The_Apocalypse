@@ -3,6 +3,8 @@ local composer = require( "composer" )
 
 local scene = composer.newScene()
 
+composer.recycleOnSceneChange = true
+
 local menuButton
 
 
@@ -79,8 +81,8 @@ function scene:create( event )
         end
 	end
 
-	local function gotoMenu()
-		composer.gotoScene( "scenes.menu", { time=800, effect="crossFade" } )
+	function gotoMenu()
+		composer.gotoScene( "scenes.menu" )
 	end
 
 	menuButton = display.newImage("image/menuBtn.png")
@@ -110,9 +112,8 @@ function scene:hide( event )
 
 	if ( phase == "will" ) then
 		display.remove(menuButton)
-
 	elseif ( phase == "did" ) then
-		composer.removeScene( "highscores" )	
+		composer.removeScene( "highscores" )
 	end
 end
 
