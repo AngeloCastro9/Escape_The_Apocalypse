@@ -16,6 +16,7 @@ local pixel
 local quantidadeVidas
 local meteorite
 local explosionPixel
+local gameSound
 
 local scoreTexto
 local score
@@ -66,6 +67,12 @@ function scene:create( event )
 
    local sceneGroup = self.view
 
+   audio.reserveChannels( 1 )
+
+   gameSound = audio.loadSound( "audio/Game.mp3" )
+
+   audio.play( gameSound, { channel=1, loops=-1 })
+
    --system.activate( "multitouch" )
    quantidadeVidas = 3
    score = 0
@@ -114,10 +121,7 @@ end
             lastX = e.x - pixel.x
         elseif(e.phase == 'moved') then
             local newPosition = e.x - lastX 
-            print( newPosition )
             if(newPosition > 140 and lastX < display.contentWidth) then
-                print(lastX - pixel.x)
-                print(display.contentWidth)
                 pixel.x = e.x - lastX
             end
         end
@@ -267,6 +271,7 @@ function scene:hide( event )
        end       
 
    elseif ( phase == "did" ) then
+        audio.stop( 1 )
         composer.removeScene( "game" )
    end
 end
