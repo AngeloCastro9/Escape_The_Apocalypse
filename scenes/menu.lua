@@ -36,6 +36,7 @@ local sequences_Meteorite = {
 
 local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
 local sheet_MeteoriteBlue = graphics.newImageSheet( "image/meteorBlue.png", sheetOptions_Meteorite )
+local sheet_MeteoriteGreen = graphics.newImageSheet( "image/meteorGreen.png", sheetOptions_Meteorite )
 
 function scene:create( event )
 
@@ -82,10 +83,15 @@ function scene:create( event )
     end
 
    function adicionarmeteorite()
-      if (contadorChangeMeteorite < 10 ) then
+      if (contadorChangeMeteorite == 0) then
          meteorite = display.newSprite( backGroup, sheet_Meteorite, sequences_Meteorite )
-      else
+      elseif (contadorChangeMeteorite == 1 and contadorChangeMeteorite < 2) then
          meteorite = display.newSprite( backGroup, sheet_MeteoriteBlue, sequences_Meteorite )
+      else  
+         meteorite = display.newSprite( backGroup, sheet_MeteoriteGreen, sequences_Meteorite )
+         if (contadorChangeMeteorite == 2) then
+            contadorChangeMeteorite = -1
+         end
       end
       meteorite:setSequence()
       meteorite:play()
