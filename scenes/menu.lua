@@ -14,6 +14,7 @@ local rankBotao
 local meteorite
 local menuSound
 local clickSound
+local contadorChangeMeteorite = 0
 
 local sheetOptions_Meteorite =
 {
@@ -34,6 +35,7 @@ local sequences_Meteorite = {
 }
 
 local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
+local sheet_MeteoriteBlue = graphics.newImageSheet( "image/meteorBlue.png", sheetOptions_Meteorite )
 
 function scene:create( event )
 
@@ -80,7 +82,11 @@ function scene:create( event )
     end
 
    function adicionarmeteorite()
-      meteorite = display.newSprite( backGroup, sheet_Meteorite, sequences_Meteorite )
+      if (contadorChangeMeteorite < 10 ) then
+         meteorite = display.newSprite( backGroup, sheet_Meteorite, sequences_Meteorite )
+      else
+         meteorite = display.newSprite( backGroup, sheet_MeteoriteBlue, sequences_Meteorite )
+      end
       meteorite:setSequence()
       meteorite:play()
       meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
@@ -88,6 +94,7 @@ function scene:create( event )
       meteorite.xScale = 0.8
       meteorite.yScale = 0.8
       meteorites:insert(meteorite)
+      contadorChangeMeteorite = contadorChangeMeteorite + 1
   end
   backGroup:insert(meteorites)
   movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
