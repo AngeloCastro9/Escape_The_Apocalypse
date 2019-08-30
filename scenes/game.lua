@@ -187,6 +187,7 @@ end
                 explosionPixel.y = pixel.y-60
                 event.target:removeSelf()
                 display.remove(vidasGrupo)   
+                contadorScore = 0
                 explosionPixelTimeLoop = timer.performWithDelay(500, removeExplosionPixel, -1)         
                 quantidadeVidas = quantidadeVidas - 1
                 vidasGrupo = display.newGroup()
