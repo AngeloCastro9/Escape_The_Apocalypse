@@ -17,6 +17,7 @@ local quantidadeVidas
 local meteorite
 local explosionPixel
 local gameSound
+local shootSound
 
 local scoreTexto
 local score
@@ -68,8 +69,10 @@ function scene:create( event )
    local sceneGroup = self.view
 
    audio.reserveChannels( 4 )
+   audio.reserveChannels( 5 )
 
    gameSound = audio.loadSound( "audio/Game.mp3" )
+   shootSound = audio.loadSound("audio/shoot.mp3")
 
    audio.play( gameSound, { channel=4, loops=-1 })
 
@@ -140,8 +143,11 @@ end
             end            
         end
     end
+
     function atirar(e)
         local tiro = display.newImage('image/shoot.png')
+        audio.play( shootSound, { channel=5 })
+        audio.setVolume( 1.5, { channel=5 } )
         tiro.x = pixel.x
         tiro.y = pixel.y - pixel.height
         tiro.xScale = 4.0
@@ -150,6 +156,7 @@ end
         physics.addBody(tiro)    
         tiros:insert(tiro)       
     end
+
     moverTiroLoop = timer.performWithDelay(1, moverTiro, -1)
     principalGrupo:insert(tiros)
     fundo:addEventListener('tap', atirar)
@@ -277,6 +284,7 @@ function scene:hide( event )
 
    elseif ( phase == "did" ) then
         audio.stop( 4 )
+        audio.stop( 5 )
         composer.removeScene( "game" )
    end
 end
