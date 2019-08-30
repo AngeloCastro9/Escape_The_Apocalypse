@@ -92,9 +92,9 @@ function scene:create( event )
    principalGrupo:insert(pixel)
    physics.addBody(pixel, "static")
 
-   scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 50)
-   scoreTexto.x = 130
-   scoreTexto.y = 60
+   scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 45)
+   scoreTexto.x = display.contentWidth-680
+   scoreTexto.y = display.contentHeight-945
    uiGrupo:insert(scoreTexto)
 
    function criarVidas(quantidadeVidas)
