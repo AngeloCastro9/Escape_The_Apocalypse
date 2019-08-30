@@ -125,7 +125,7 @@ end
             lastX = e.x - pixel.x
         elseif(e.phase == 'moved') then
             local newPosition = e.x - lastX 
-            if(newPosition > 130 and newPosition < display.contentWidth) then
+            if(newPosition > 65 and newPosition < 700) then
                 pixel.x = e.x - lastX
             end
         end
