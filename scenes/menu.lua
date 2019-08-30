@@ -83,7 +83,7 @@ function scene:create( event )
       meteorite = display.newSprite( backGroup, sheet_Meteorite, sequences_Meteorite )
       meteorite:setSequence()
       meteorite:play()
-      meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width))
+      meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
       meteorite.y = -meteorite.height
       meteorite.xScale = 0.7
       meteorite.yScale = 0.7

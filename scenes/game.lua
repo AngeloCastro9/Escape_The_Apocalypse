@@ -121,7 +121,7 @@ end
             lastX = e.x - pixel.x
         elseif(e.phase == 'moved') then
             local newPosition = e.x - lastX 
-            if(newPosition > 140 and lastX < display.contentWidth) then
+            if(newPosition > 150 and newPosition < 600) then
                 pixel.x = e.x - lastX
             end
         end
@@ -219,7 +219,7 @@ end
         meteorite = display.newSprite( principalGrupo, sheet_Meteorite, sequences_Meteorite )
         meteorite:setSequence()
         meteorite:play()
-        meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width))
+        meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
         meteorite.y = -meteorite.height
         meteorite.xScale = 0.7
         meteorite.yScale = 0.7
