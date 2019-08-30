@@ -157,6 +157,9 @@ function scene:hide( event )
 	local phase = event.phase
 
 	if ( phase == "will" ) then
+		display.remove(meteorites) 
+      	timer.cancel(movermeteoriteLoop)
+      	timer.cancel(criarmeteoriteLoop) 
 		display.remove(menuButton)
 	elseif ( phase == "did" ) then
 		composer.removeScene( "highscores" )
