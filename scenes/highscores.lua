@@ -7,6 +7,27 @@ composer.recycleOnSceneChange = true
 
 local menuButton
 local clickSound
+local meteorite
+
+local sheetOptions_Meteorite =
+{
+    width = 236,
+    height = 398,
+    numFrames = 11
+}
+
+local sequences_Meteorite = {
+   {
+       name = "meteorite",
+       start = 1,
+       count = 11,
+       time = 500,
+       loopCount = 0,
+       loopDirection = "forward"
+   },
+}
+
+local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
 
 local json = require( "json" )
 
@@ -68,6 +89,29 @@ function scene:create( event )
     background.y = display.contentCenterY
 
     local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 100, native.systemFont, 44 )
+
+	local meteorites = display.newGroup()
+    function movermeteorite()
+        for a = 0, meteorites.numChildren, 1 do
+            if meteorites[a] ~= nil and meteorites[a].x ~= nil then
+                meteorites[a].y = meteorites[a].y + 10
+            end            
+        end
+    end
+
+   function adicionarmeteorite()
+      meteorite = display.newSprite( sceneGroup, sheet_Meteorite, sequences_Meteorite )
+      meteorite:setSequence()
+      meteorite:play()
+      meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
+      meteorite.y = -meteorite.height
+      meteorite.xScale = 0.7
+      meteorite.yScale = 0.7
+      meteorites:insert(meteorite)
+  end
+  sceneGroup:insert(meteorites)
+  movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
+  criarmeteoriteLoop = timer.performWithDelay(900, adicionarmeteorite, -1)
 
     for i = 1, 10 do
         if ( scoresTable[i] ) then

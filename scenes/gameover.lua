@@ -6,7 +6,6 @@ local gameoverGrupo = display.newGroup()
 local gameOverSound
 local clickSound
 
-
 function scene:create( event )
 
    local sceneGroup = self.view
