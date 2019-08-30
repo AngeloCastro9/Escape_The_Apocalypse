@@ -25,6 +25,8 @@ function scene:create( event )
    skull = display.newImage('image/skull.png')
    skull.x = display.contentCenterX
    skull.y = 300
+   skull.xScale = 1.1
+   skull.yScale = 1.1
    gameoverGrupo:insert(skull)
 
    botaoVoltar = display.newImage("image/backBtn.png")

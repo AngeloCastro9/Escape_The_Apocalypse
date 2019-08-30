@@ -85,8 +85,8 @@ function scene:create( event )
       meteorite:play()
       meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
       meteorite.y = -meteorite.height
-      meteorite.xScale = 0.7
-      meteorite.yScale = 0.7
+      meteorite.xScale = 0.8
+      meteorite.yScale = 0.8
       meteorites:insert(meteorite)
   end
   backGroup:insert(meteorites)

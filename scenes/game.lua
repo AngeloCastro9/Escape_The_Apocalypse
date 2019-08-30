@@ -86,28 +86,32 @@ function scene:create( event )
    pixel = display.newImage("image/pixel.png")
    pixel.x = display.contentWidth/2
    pixel.y = display.contentHeight - 50
+   pixel.xScale = 1.1
+   pixel.yScale = 1.1
    pixel.name = "PIXEL"
    principalGrupo:insert(pixel)
    physics.addBody(pixel, "static")
 
-   scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 30)
-   scoreTexto.x = 200
+   scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 50)
+   scoreTexto.x = 130
    scoreTexto.y = 60
    uiGrupo:insert(scoreTexto)
 
    function criarVidas(quantidadeVidas)
     for i = 1, quantidadeVidas do
         vida = display.newImage('image/heart.png')
-        vida.x = (display.contentWidth) - (50 * i+200)
-        vida.y = display.contentHeight - 955
+        vida.x = (display.contentWidth) - (50 * i+100)
+        vida.y = display.contentHeight - 945
+        vida.xScale = 1.2
+        vida.yScale = 1.2
         vidasGrupo:insert(vida)            
     end
 end
    criarVidas(quantidadeVidas)
 
    quit = display.newImage("image/HomeButton.png")
-   quit.x = display.contentWidth -180 
-   quit.y = display.contentHeight-955
+   quit.x = display.contentWidth -80 
+   quit.y = display.contentHeight-945
    principalGrupo:insert(quit)
     function backToMenu()
         adicionarmeteorite()
@@ -121,7 +125,7 @@ end
             lastX = e.x - pixel.x
         elseif(e.phase == 'moved') then
             local newPosition = e.x - lastX 
-            if(newPosition > 150 and newPosition < 600) then
+            if(newPosition > 130 and newPosition < display.contentWidth) then
                 pixel.x = e.x - lastX
             end
         end
@@ -140,8 +144,8 @@ end
         local tiro = display.newImage('image/shoot.png')
         tiro.x = pixel.x
         tiro.y = pixel.y - pixel.height
-        tiro.xScale = 3.5
-        tiro.yScale = 3.5
+        tiro.xScale = 4.0
+        tiro.yScale = 4.0
         tiro.name = 'TIRO'
         physics.addBody(tiro)    
         tiros:insert(tiro)       
@@ -222,8 +226,8 @@ end
         meteorite:play()
         meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
         meteorite.y = -meteorite.height
-        meteorite.xScale = 0.7
-        meteorite.yScale = 0.7
+        meteorite.xScale = 0.8
+        meteorite.yScale = 0.8
         meteorite.name = "meteorite"
         local pentagonShape = { -50, 130, 50,-110, 70,130, 26,50, -50,-80 }
         physics.addBody(meteorite, "dynamic", { density=3.0, friction=0.8, bounce=0.3, shape=pentagonShape } )
