@@ -46,7 +46,7 @@ function scene:create( event )
 
    audio.play( menuSound, { channel=1, loops=-1 })
 
-   fundo = display.newImage('image/background.png', display.contentCenterX, display.contentCenterY)
+   fundo = display.newImage('image/backgroundEasy.png', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
    fundo.height = display.contentHeight
    backGroup:insert(fundo)
@@ -63,7 +63,7 @@ function scene:create( event )
    rankBotao.yScale = 0.2
    menuGrupo:insert(rankBotao)
 
-   jogarBotao = display.newImage("image/playBtn.png")
+   jogarBotao = display.newImage("image/easyBtn.png")
    jogarBotao.x = display.contentCenterX
    jogarBotao.y = display.contentCenterY
    jogarBotao.xScale = 0.2

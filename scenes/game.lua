@@ -81,7 +81,7 @@ function scene:create( event )
    score = 0
    contadorScore = 0
 
-   fundo = display.newImage('image/background.png', display.contentCenterX, display.contentCenterY)
+   fundo = display.newImage('image/backgroundEasy.png', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
    fundo.height = display.contentHeight
    fundoGrupo:insert(fundo)
