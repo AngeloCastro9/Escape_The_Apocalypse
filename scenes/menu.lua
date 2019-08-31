@@ -106,11 +106,11 @@ function scene:create( event )
   movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
   criarmeteoriteLoop = timer.performWithDelay(600, adicionarmeteorite, -1)
 
-   function gotoGame()
+   function gotoGameEasy()
       audio.stop( 1 )
       audio.play(clickSound, { channel=2 })
       audio.setVolume( 2.0, { channel=2 } )
-      composer.gotoScene("scenes.game")
+      composer.gotoScene("scenes.gameEasy")
    end
 
    function gotoRank()
@@ -120,7 +120,7 @@ function scene:create( event )
    end
 
    rankBotao:addEventListener("tap", gotoRank)
-   jogarBotao:addEventListener("tap", gotoGame)
+   jogarBotao:addEventListener("tap", gotoGameEasy)
 
 end
 
