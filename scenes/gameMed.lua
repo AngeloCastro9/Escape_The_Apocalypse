@@ -70,18 +70,20 @@ function scene:create( event )
 
    local sceneGroup = self.view
 
+   audio.reserveChannels( 3 )
    audio.reserveChannels( 4 )
    audio.reserveChannels( 5 )
    audio.reserveChannels( 6 )
 
-   gameSound = audio.loadSound( "audio/Game.mp3" )
+   clickSound = audio.loadSound("audio/Click.wav")
+   gameSound = audio.loadSound( "audio/gameMedSound.mp3" )
    shootSound = audio.loadSound("audio/shoot.mp3")
    explosionSound = audio.loadSound("audio/Explosion.mp3")
 
    audio.play( gameSound, { channel=4, loops=-1 })
 
    --system.activate( "multitouch" )
-   quantidadeVidas = 3
+   quantidadeVidas = 4
    score = 0
    contadorScore = 0
 
@@ -127,6 +129,8 @@ end
    principalGrupo:insert(quit)
     function backToMenu()
         adicionarmeteorite()
+        audio.play( clickSound, { channel=3 })
+        audio.setVolume( 2.0, { channel=3 } )
         composer.gotoScene("scenes.menu")
 end
     quit:addEventListener("tap", backToMenu)
@@ -249,11 +253,11 @@ end
                 scoreTexto.text = "Score: "..score
                 contadorScore = contadorScore+1
             end
-            if contadorScore == 15 and quantidadeVidas < 3  then
+            if contadorScore == 10 and quantidadeVidas < 4  then
                 contadorScore = 0
                 quantidadeVidas = quantidadeVidas + 1
                 criarVidas(quantidadeVidas)
-            elseif contadorScore == 15 then
+            elseif contadorScore == 10 then
                 contadorScore = 0
             end
         end
@@ -314,8 +318,10 @@ function scene:hide( event )
        end       
 
    elseif ( phase == "did" ) then
+        audio.stop( 3 )
         audio.stop( 4 )
         audio.stop( 5 )
+        audio.stop( 6 )
         composer.removeScene( "game" )
    end
 end

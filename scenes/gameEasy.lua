@@ -19,6 +19,7 @@ local explosionPixel
 local gameSound
 local shootSound
 local explosionSound
+local clickSound
 
 local scoreTexto
 local score
@@ -69,11 +70,13 @@ function scene:create( event )
 
    local sceneGroup = self.view
 
+   audio.reserveChannels( 3 )
    audio.reserveChannels( 4 )
    audio.reserveChannels( 5 )
    audio.reserveChannels( 6 )
 
-   gameSound = audio.loadSound( "audio/Game.mp3" )
+   clickSound = audio.loadSound("audio/Click.wav")
+   gameSound = audio.loadSound( "audio/GameEasySound.mp3" )
    shootSound = audio.loadSound("audio/shoot.mp3")
    explosionSound = audio.loadSound("audio/Explosion.mp3")
 
@@ -121,6 +124,8 @@ end
    principalGrupo:insert(quit)
     function backToMenu()
         adicionarmeteorite()
+        audio.play( clickSound, { channel=3 })
+        audio.setVolume( 2.0, { channel=3 } )
         composer.gotoScene("scenes.menu")
 end
     quit:addEventListener("tap", backToMenu)
@@ -288,8 +293,10 @@ function scene:hide( event )
        end       
 
    elseif ( phase == "did" ) then
+        audio.stop( 3 )
         audio.stop( 4 )
         audio.stop( 5 )
+        audio.stop( 6 )
         composer.removeScene( "game" )
    end
 end
