@@ -126,6 +126,7 @@ end
         adicionarmeteorite()
         audio.play( clickSound, { channel=3 })
         audio.setVolume( 2.0, { channel=3 } )
+        composer.setVariable( "finalScore", score )
         composer.gotoScene("scenes.menu")
 end
     quit:addEventListener("tap", backToMenu)
