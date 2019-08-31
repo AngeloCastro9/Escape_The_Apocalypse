@@ -8,7 +8,8 @@ local backGroup = display.newGroup()
 local menuGrupo = display.newGroup()
 
 local titulo
-local jogarBotao
+local gameEasyBtn
+local gameMedBtn
 local fundo
 local rankBotao
 local meteorite
@@ -61,17 +62,24 @@ function scene:create( event )
 
    rankBotao = display.newImage("image/rankBtn.png")
    rankBotao.x = display.contentCenterX
-   rankBotao.y = display.contentCenterY+200
+   rankBotao.y = display.contentCenterY+350
    rankBotao.xScale = 0.2
    rankBotao.yScale = 0.2
    menuGrupo:insert(rankBotao)
 
-   jogarBotao = display.newImage("image/easyBtn.png")
-   jogarBotao.x = display.contentCenterX
-   jogarBotao.y = display.contentCenterY
-   jogarBotao.xScale = 0.2
-   jogarBotao.yScale = 0.2
-   menuGrupo:insert(jogarBotao)
+   gameEasyBtn = display.newImage("image/easyBtn.png")
+   gameEasyBtn.x = display.contentCenterX
+   gameEasyBtn.y = display.contentCenterY
+   gameEasyBtn.xScale = 0.2
+   gameEasyBtn.yScale = 0.2
+   menuGrupo:insert(gameEasyBtn)
+
+   gameMedBtn = display.newImage("image/medBtn.png")
+   gameMedBtn.x = display.contentCenterX
+   gameMedBtn.y = display.contentCenterY+100
+   gameMedBtn.xScale = 0.2
+   gameMedBtn.yScale = 0.2
+   menuGrupo:insert(gameMedBtn)
 
    local meteorites = display.newGroup()
     function movermeteorite()
@@ -113,6 +121,13 @@ function scene:create( event )
       composer.gotoScene("scenes.gameEasy")
    end
 
+   function gotoGameMed()
+      audio.stop( 1 )
+      audio.play(clickSound, { channel=2 })
+      audio.setVolume( 2.0, { channel=2 } )
+      composer.gotoScene("scenes.gameMed")
+   end
+
    function gotoRank()
       audio.play(clickSound, { channel=2, loops=-1 })
       audio.setVolume( 2.0, { channel=2 } )
@@ -120,7 +135,8 @@ function scene:create( event )
    end
 
    rankBotao:addEventListener("tap", gotoRank)
-   jogarBotao:addEventListener("tap", gotoGameEasy)
+   gameEasyBtn:addEventListener("tap", gotoGameEasy)
+   gameMedBtn:addEventListener("tap", gotoGameMed)
 
 end
 

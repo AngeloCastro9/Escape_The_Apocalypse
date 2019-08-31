@@ -19,6 +19,7 @@ local explosionPixel
 local gameSound
 local shootSound
 local explosionSound
+local chaoInvisivel
 
 local scoreTexto
 local score
@@ -39,8 +40,8 @@ local sheetOptions_ExplosionPixel =
     numFrames = 11
 }
 
-local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
-local sheet_ExplosionPixel = graphics.newImageSheet( "image/explosionPixelEasy.png", sheetOptions_ExplosionPixel)
+local sheet_Meteorite = graphics.newImageSheet( "image/meteorBlue.png", sheetOptions_Meteorite )
+local sheet_ExplosionPixel = graphics.newImageSheet( "image/explosionPixelMed.png", sheetOptions_ExplosionPixel)
 
 -- sequences table
 local sequences_Meteorite = {
@@ -84,7 +85,12 @@ function scene:create( event )
    score = 0
    contadorScore = 0
 
-   fundo = display.newImage('image/backgroundEasy.png', display.contentCenterX, display.contentCenterY)
+    chaoInvisivel = display.newRect(400, 1550, 768, display.contentHeight )
+    physics.addBody(chaoInvisivel, "static", ({density=3.0, friction=1.0, bounce=0, filter =  collisionFilter1}))
+    chaoInvisivel.name = "CHAO"
+	principalGrupo:insert(chaoInvisivel)
+
+   fundo = display.newImage('image/backgroundMed.png', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
    fundo.height = display.contentHeight
    fundoGrupo:insert(fundo)
@@ -215,7 +221,27 @@ end
                     pixel.alpha = 0
                     timer.performWithDelay( 100, restorePixel )
                 end
-
+            elseif(event.other.name == "CHAO")then
+                explosionPixel = display.newSprite( principalGrupo, sheet_ExplosionPixel, sequences_explosionPixel )
+                explosionPixel:setSequence()
+                explosionPixel:play()
+                audio.play( explosionSound, { channel=6 })
+                audio.setVolume( 1.5, { channel=6 } )
+                explosionPixel.x = pixel.x
+                explosionPixel.y = pixel.y-60
+                event.target:removeSelf()
+                display.remove(vidasGrupo)   
+                explosionPixelTimeLoop = timer.performWithDelay(500, removeExplosionPixel, -1)         
+                quantidadeVidas = quantidadeVidas - 1
+                vidasGrupo = display.newGroup()
+                criarVidas(quantidadeVidas)
+                if quantidadeVidas == 0 then
+                    composer.setVariable( "finalScore", score )
+                    composer.gotoScene("scenes.gameover")
+                else 
+                    pixel.alpha = 0
+                    timer.performWithDelay( 100, restorePixel )
+                end
             elseif(event.other.name == "TIRO") then
                 event.target:removeSelf()
                 event.other:removeSelf()
@@ -223,11 +249,11 @@ end
                 scoreTexto.text = "Score: "..score
                 contadorScore = contadorScore+1
             end
-            if contadorScore == 10 and quantidadeVidas < 3  then
+            if contadorScore == 15 and quantidadeVidas < 3  then
                 contadorScore = 0
                 quantidadeVidas = quantidadeVidas + 1
                 criarVidas(quantidadeVidas)
-            elseif contadorScore == 10 then
+            elseif contadorScore == 15 then
                 contadorScore = 0
             end
         end
