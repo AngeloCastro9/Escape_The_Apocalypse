@@ -274,8 +274,9 @@ function scene:hide( event )
    if ( phase == "will" ) then
        fundo:removeEventListener('touch', moverPixel)
        fundo:removeEventListener('tap', atirar)
-       meteorite:removeEventListener('collision', meteoriteColisao) 
-
+       if (meteorites ~= nil) then
+        meteorite:removeEventListener('collision', meteoriteColisao) 
+       end
        display.remove(fundoGrupo)
        display.remove(meteorites)       
        display.remove(principalGrupo)
