@@ -2,6 +2,8 @@ local composer = require( "composer" )
 
 local scene = composer.newScene()
 
+composer.recycleOnSceneChange = true
+
 local gameoverGrupo = display.newGroup()
 local gameOverSound
 local clickSound
@@ -17,9 +19,16 @@ function scene:create( event )
 
    audio.play( gameOverSound, { channel=7, loops=-1 })
 
+   fundo = display.newImage('image/backgroundGameOver.jpg', display.contentCenterX, display.contentCenterY)
+   fundo.width = display.contentWidth
+   fundo.height = display.contentHeight
+   gameoverGrupo:insert(fundo)
+
    fimDeJogoTexto = display.newImage('image/endGame.png')
    fimDeJogoTexto.x = display.contentCenterX
    fimDeJogoTexto.y = 130
+   fimDeJogoTexto.xScale = 1.0
+   fimDeJogoTexto.xScale = 1.0
    gameoverGrupo:insert(fimDeJogoTexto)
 
    skull = display.newImage('image/skull.png')

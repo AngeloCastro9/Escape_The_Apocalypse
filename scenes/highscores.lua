@@ -88,7 +88,6 @@ function scene:create( event )
     background.x = display.contentCenterX
     background.y = display.contentCenterY
 
-	--local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 100, native.systemFont, 44 )
 	local highScoresHeader = display.newImage('image/highScore.png')
 	highScoresHeader.x = display.contentCenterX
 	highScoresHeader.y = 130

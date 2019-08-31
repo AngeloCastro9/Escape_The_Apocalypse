@@ -89,14 +89,14 @@ function scene:create( event )
    pixel = display.newImage("image/pixel.png")
    pixel.x = display.contentWidth/2
    pixel.y = display.contentHeight - 50
-   pixel.xScale = 1.1
-   pixel.yScale = 1.1
+   pixel.xScale = 1.3
+   pixel.yScale = 1.4
    pixel.name = "PIXEL"
    principalGrupo:insert(pixel)
    physics.addBody(pixel, "static")
 
    scoreTexto = display.newText('Score: ', 10, 0, native.systemFontBold, 45)
-   scoreTexto.x = display.contentWidth-680
+   scoreTexto.x = display.contentWidth-660
    scoreTexto.y = display.contentHeight-945
    uiGrupo:insert(scoreTexto)
 
