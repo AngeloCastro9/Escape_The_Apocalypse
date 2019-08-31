@@ -104,7 +104,7 @@ function scene:create( event )
   end
   backGroup:insert(meteorites)
   movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
-  criarmeteoriteLoop = timer.performWithDelay(900, adicionarmeteorite, -1)
+  criarmeteoriteLoop = timer.performWithDelay(600, adicionarmeteorite, -1)
 
    function gotoGame()
       audio.stop( 1 )

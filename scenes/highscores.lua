@@ -8,6 +8,7 @@ composer.recycleOnSceneChange = true
 local menuButton
 local clickSound
 local meteorite
+local contadorChangeMeteorite = 0
 
 local sheetOptions_Meteorite =
 {
@@ -28,6 +29,8 @@ local sequences_Meteorite = {
 }
 
 local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
+local sheet_MeteoriteBlue = graphics.newImageSheet( "image/meteorBlue.png", sheetOptions_Meteorite )
+local sheet_MeteoriteGreen = graphics.newImageSheet( "image/meteorGreen.png", sheetOptions_Meteorite )
 
 local json = require( "json" )
 
@@ -103,20 +106,30 @@ function scene:create( event )
         end
     end
 
-   function adicionarmeteorite()
-      meteorite = display.newSprite( sceneGroup, sheet_Meteorite, sequences_Meteorite )
-      meteorite:setSequence()
-      meteorite:play()
-      meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
-      meteorite.y = -meteorite.height
-      meteorite.xScale = 0.8
-      meteorite.yScale = 0.8
-      meteorites:insert(meteorite)
-  end
-  sceneGroup:insert(meteorites)
-  movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
-  criarmeteoriteLoop = timer.performWithDelay(900, adicionarmeteorite, -1)
-
+	function adicionarmeteorite()
+		if (contadorChangeMeteorite == 0) then
+		   meteorite = display.newSprite( sceneGroup, sheet_Meteorite, sequences_Meteorite )
+		elseif (contadorChangeMeteorite == 1 and contadorChangeMeteorite < 2) then
+		   meteorite = display.newSprite( sceneGroup, sheet_MeteoriteBlue, sequences_Meteorite )
+		else  
+		   meteorite = display.newSprite( sceneGroup, sheet_MeteoriteGreen, sequences_Meteorite )
+		   if (contadorChangeMeteorite == 2) then
+			  contadorChangeMeteorite = -1
+		   end
+		end
+		meteorite:setSequence()
+		meteorite:play()
+		meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
+		meteorite.y = -meteorite.height
+		meteorite.xScale = 0.8
+		meteorite.yScale = 0.8
+		meteorites:insert(meteorite)
+		contadorChangeMeteorite = contadorChangeMeteorite + 1
+	end
+	sceneGroup:insert(meteorites)
+	movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
+	criarmeteoriteLoop = timer.performWithDelay(600, adicionarmeteorite, -1)
+	
     for i = 1, 10 do
         if ( scoresTable[i] ) then
             local yPos = 150 + ( i * 56 )
