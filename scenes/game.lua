@@ -18,6 +18,7 @@ local meteorite
 local explosionPixel
 local gameSound
 local shootSound
+local explosionSound
 
 local scoreTexto
 local score
@@ -70,9 +71,11 @@ function scene:create( event )
 
    audio.reserveChannels( 4 )
    audio.reserveChannels( 5 )
+   audio.reserveChannels( 6 )
 
    gameSound = audio.loadSound( "audio/Game.mp3" )
    shootSound = audio.loadSound("audio/shoot.mp3")
+   explosionSound = audio.loadSound("audio/Explosion.mp3")
 
    audio.play( gameSound, { channel=4, loops=-1 })
 
@@ -194,6 +197,8 @@ end
                 explosionPixel = display.newSprite( principalGrupo, sheet_ExplosionPixel, sequences_explosionPixel )
                 explosionPixel:setSequence()
                 explosionPixel:play()
+                audio.play( explosionSound, { channel=6 })
+                audio.setVolume( 1.5, { channel=6 } )
                 explosionPixel.x = pixel.x
                 explosionPixel.y = pixel.y-60
                 event.target:removeSelf()
