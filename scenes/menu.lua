@@ -122,6 +122,7 @@ function scene:create( event )
 
    function gotoGameEasy()
       audio.stop( 1 )
+      audio.stop( 3 )
       audio.play(clickSound, { channel=2 })
       audio.setVolume( 2.0, { channel=2 } )
       composer.gotoScene("scenes.gameEasy")
@@ -129,14 +130,15 @@ function scene:create( event )
 
    function gotoGameMed()
       audio.stop( 1 )
+      audio.stop( 3 )
       audio.play(clickSound, { channel=2 })
-      audio.setVolume( 2.0, { channel=2 } )
+      audio.setVolume( 1.0, { channel=2 } )
       composer.gotoScene("scenes.gameMed")
    end
 
    function gotoRank()
       audio.play(clickSound, { channel=2, loops=-1 })
-      audio.setVolume( 2.0, { channel=2 } )
+      audio.setVolume( 1.0, { channel=2 } )
       composer.gotoScene("scenes.highscores")
    end
 
@@ -167,7 +169,6 @@ function scene:hide( event )
       timer.cancel(criarmeteoriteLoop) 
    elseif ( phase == "did" ) then
       audio.stop( 2 )
-      audio.stop( 3 )
       composer.removeScene( "menu" )
    end
 end
