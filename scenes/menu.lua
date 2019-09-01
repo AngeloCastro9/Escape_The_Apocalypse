@@ -133,7 +133,7 @@ function scene:create( event )
       audio.stop( 3 )
       audio.play(clickSound, { channel=2 })
       audio.setVolume( 1.0, { channel=2 } )
-      composer.gotoScene("scenes.gameMed")
+      composer.gotoScene("scenes.gameMedExplication")
    end
 
    function gotoRank()

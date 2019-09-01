@@ -31,13 +31,13 @@ function scene:create( event )
    fundo.height = display.contentHeight
    backGroup:insert(fundo)
 
-   explicationText = display.newText([[Na dificuldade média, 
-   você agora tem uma vida a mais, 
-   totalizando 4 vidas Os meteoros agora 
-   precisam ser destruídos. 
-   Ao tocarem no chão você irá perder uma vida.
-    Boa sorte!]], 10, 0, native.systemFontBold, 45)
-   explicationText.x = display.contentCenterX
+   explicationText = display.newText([[
+    Você agora tem uma vida a mais. 
+    Os meteoros precisam ser destruídos.
+    Ao tocarem o chão você irá perder 
+    uma vida.
+    Boa sorte!]], 10, 0, native.systemFontBold, 40)
+   explicationText.x = display.contentCenterX-10
    explicationText.y = display.contentCenterY
    menuGrupo:insert(explicationText)
 
@@ -49,8 +49,8 @@ function scene:create( event )
    gameMedBtn = display.newImage("image/medBtn.png")
    gameMedBtn.x = display.contentCenterX
    gameMedBtn.y = display.contentCenterY+100
-   gameMedBtn.xScale = 0.2
-   gameMedBtn.yScale = 0.2
+   gameMedBtn.xScale = 0.6
+   gameMedBtn.yScale = 0.6
    menuGrupo:insert(gameMedBtn)
 
    function gotoGameMed()
