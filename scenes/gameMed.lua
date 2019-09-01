@@ -20,6 +20,7 @@ local gameSound
 local shootSound
 local explosionSound
 local chaoInvisivel
+local meteorFireSound
 
 local scoreTexto
 local score
@@ -70,6 +71,7 @@ function scene:create( event )
 
    local sceneGroup = self.view
 
+   audio.reserveChannels( 2 )
    audio.reserveChannels( 3 )
    audio.reserveChannels( 4 )
    audio.reserveChannels( 5 )
@@ -79,8 +81,10 @@ function scene:create( event )
    gameSound = audio.loadSound( "audio/gameMedSound.mp3" )
    shootSound = audio.loadSound("audio/shoot.mp3")
    explosionSound = audio.loadSound("audio/Explosion.mp3")
+   meteorFireSound = audio.loadSound("audio/meteorFire.mp3")
 
-   audio.play( gameSound, { channel=4, loops=-1 })
+    audio.play( gameSound, { channel=4, loops=-1 })
+    audio.setVolume( 0.7, { channel=4 } )
 
    --system.activate( "multitouch" )
    quantidadeVidas = 4
@@ -267,6 +271,8 @@ end
         meteorite = display.newSprite( principalGrupo, sheet_Meteorite, sequences_Meteorite )
         meteorite:setSequence()
         meteorite:play()
+        audio.play( meteorFireSound, { channel=2, loops=-1 })
+        audio.setVolume( 1.0, { channel=2 } )
         meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
         meteorite.y = -meteorite.height
         meteorite.xScale = 0.8
@@ -320,11 +326,12 @@ function scene:hide( event )
        end       
 
    elseif ( phase == "did" ) then
-        audio.stop( 3 )
-        audio.stop( 4 )
-        audio.stop( 5 )
-        audio.stop( 6 )
-        composer.removeScene( "game" )
+    audio.stop( 2 )
+    audio.stop( 3 )
+    audio.stop( 4 )
+    audio.stop( 5 )
+    audio.stop( 6 )
+    composer.removeScene( "game" )
    end
 end
 

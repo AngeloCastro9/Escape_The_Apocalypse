@@ -15,6 +15,7 @@ local rankBotao
 local meteorite
 local menuSound
 local clickSound
+local meteorFireSound
 local contadorChangeMeteorite = 0
 
 local sheetOptions_Meteorite =
@@ -44,11 +45,14 @@ function scene:create( event )
    local sceneGroup = self.view
    audio.reserveChannels( 1 )
    audio.reserveChannels( 2 )
+   audio.reserveChannels( 3 )
 
    menuSound = audio.loadSound( "audio/principal.mp3" )
    clickSound = audio.loadSound("audio/Click.wav")
+   meteorFireSound = audio.loadSound("audio/meteorFire.mp3")
 
    audio.play( menuSound, { channel=1, loops=-1 })
+   audio.setVolume(0.6, {channel=1})
 
    fundo = display.newImage('image/backgroundEasy.png', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
@@ -103,6 +107,8 @@ function scene:create( event )
       end
       meteorite:setSequence()
       meteorite:play()
+      audio.play( meteorFireSound, { channel=3, loops=-1 })
+      audio.setVolume( 1.0, { channel=3 } )
       meteorite.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
       meteorite.y = -meteorite.height
       meteorite.xScale = 0.8
@@ -161,6 +167,7 @@ function scene:hide( event )
       timer.cancel(criarmeteoriteLoop) 
    elseif ( phase == "did" ) then
       audio.stop( 2 )
+      audio.stop( 3 )
       composer.removeScene( "menu" )
    end
 end
