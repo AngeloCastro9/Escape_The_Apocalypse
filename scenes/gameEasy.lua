@@ -21,6 +21,7 @@ local shootSound
 local explosionSound
 local clickSound
 local meteorFireSound
+local timeMeteor = 900
 
 local scoreTexto
 local score
@@ -256,10 +257,15 @@ end
         physics.addBody(meteorite, "dynamic", { density=3.0, friction=0.8, bounce=0.3, shape=pentagonShape } )
         meteorites:insert(meteorite)
         meteorite:addEventListener('collision', meteoriteColisao)    
+        if( score > 20 and score < 50 ) then
+            timeMeteor = 800
+        elseif( score > 50 ) then
+            timeMeteor = 700
+        end
     end
     principalGrupo:insert(meteorites)
     movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
-    criarmeteoriteLoop = timer.performWithDelay(900, adicionarmeteorite, -1)
+    criarmeteoriteLoop = timer.performWithDelay(timeMeteor, adicionarmeteorite, -1)
 end
 
 function scene:show( event )
