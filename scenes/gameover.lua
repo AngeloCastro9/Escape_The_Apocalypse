@@ -34,8 +34,8 @@ function scene:create( event )
    botaoVoltar = display.newImage("image/backBtn.png")
    botaoVoltar.x = display.contentCenterX
    botaoVoltar.y = display.contentCenterY+300
-   botaoVoltar.xScale = 0.2
-   botaoVoltar.yScale = 0.2
+   botaoVoltar.xScale = 0.6
+   botaoVoltar.yScale = 0.6
    gameoverGrupo:insert(botaoVoltar)
 
    function gotoMenu()

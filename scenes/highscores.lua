@@ -151,8 +151,8 @@ function scene:create( event )
 	menuButton = display.newImage("image/menuBtn.png")
 	menuButton.x = display.contentCenterX
 	menuButton.y = display.contentCenterY+300
-	menuButton.xScale = 0.2
-	menuButton.yScale = 0.2
+	menuButton.xScale = 0.6
+	menuButton.yScale = 0.6
    	menuButton:addEventListener( "tap", gotoMenu )
 end
 

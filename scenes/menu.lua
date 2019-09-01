@@ -67,22 +67,22 @@ function scene:create( event )
    rankBotao = display.newImage("image/rankBtn.png")
    rankBotao.x = display.contentCenterX
    rankBotao.y = display.contentCenterY+350
-   rankBotao.xScale = 0.2
-   rankBotao.yScale = 0.2
+   rankBotao.xScale = 0.6
+   rankBotao.yScale = 0.6
    menuGrupo:insert(rankBotao)
 
    gameEasyBtn = display.newImage("image/easyBtn.png")
    gameEasyBtn.x = display.contentCenterX
    gameEasyBtn.y = display.contentCenterY
-   gameEasyBtn.xScale = 0.2
-   gameEasyBtn.yScale = 0.2
+   gameEasyBtn.xScale = 0.6
+   gameEasyBtn.yScale = 0.6
    menuGrupo:insert(gameEasyBtn)
 
    gameMedBtn = display.newImage("image/medBtn.png")
    gameMedBtn.x = display.contentCenterX
    gameMedBtn.y = display.contentCenterY+100
-   gameMedBtn.xScale = 0.2
-   gameMedBtn.yScale = 0.2
+   gameMedBtn.xScale = 0.6
+   gameMedBtn.yScale = 0.6
    menuGrupo:insert(gameMedBtn)
 
    local meteorites = display.newGroup()
