@@ -85,6 +85,7 @@ function scene:create( event )
    meteorFireSound = audio.loadSound("audio/meteorFire.mp3")
 
    audio.play( gameSound, { channel=4, loops=-1 })
+   audio.setVolume( 0.5, { channel=4 } )
 
    --system.activate( "multitouch" )
    quantidadeVidas = 3
