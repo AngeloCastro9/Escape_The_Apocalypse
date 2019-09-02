@@ -38,6 +38,8 @@ function scene:create( event )
     Ao tocarem o chão você irá perder 
     uma vida.
     Boa sorte!]], 10, 0, native.systemFontBold, 40)
+   explicationText:setFillColor( 0.50, 0.78, 1)
+   explicationText
    explicationText.x = display.contentCenterX-10
    explicationText.y = display.contentCenterY
    menuGrupo:insert(explicationText)
