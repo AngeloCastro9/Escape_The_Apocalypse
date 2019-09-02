@@ -85,7 +85,7 @@ function scene:create( event )
    meteorFireSound = audio.loadSound("audio/meteorFire.mp3")
 
     audio.play( gameSound, { channel=4, loops=-1 })
-    audio.setVolume( 0.7, { channel=4 } )
+    audio.setVolume( 0.5, { channel=4 } )
 
    --system.activate( "multitouch" )
    quantidadeVidas = 4
@@ -166,7 +166,7 @@ end
     function atirar(e)
         local tiro = display.newImage('image/shoot.png')
         audio.play( shootSound, { channel=5 })
-        audio.setVolume( 1.5, { channel=5 } )
+        audio.setVolume( 0.4, { channel=5 } )
         tiro.x = pixel.x
         tiro.y = pixel.y - pixel.height
         tiro.xScale = 4.0
