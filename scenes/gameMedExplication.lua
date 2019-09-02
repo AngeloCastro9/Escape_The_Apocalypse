@@ -9,6 +9,7 @@ local menuGrupo = display.newGroup()
 
 local titulo
 local gameMedBtn
+local backBtn
 local fundo
 local menuSound
 local clickSound
@@ -48,10 +49,23 @@ function scene:create( event )
 
    gameMedBtn = display.newImage("image/medBtn.png")
    gameMedBtn.x = display.contentCenterX
-   gameMedBtn.y = display.contentCenterY+100
+   gameMedBtn.y = display.contentCenterY+200
    gameMedBtn.xScale = 0.6
    gameMedBtn.yScale = 0.6
    menuGrupo:insert(gameMedBtn)
+
+   backBtn = display.newImage("image/backBtn.png")
+   backBtn.x = display.contentCenterX
+   backBtn.y = display.contentCenterY+290
+   backBtn.xScale = 0.6
+   backBtn.yScale = 0.6
+   menuGrupo:insert(backBtn)
+
+   function gotoMenu()
+      audio.play(clickSound, { channel=2 })
+      audio.setVolume( 1.0, { channel=2 } )
+      composer.gotoScene("scenes.menu")
+   end
 
    function gotoGameMed()
       audio.stop( 1 )
@@ -61,6 +75,7 @@ function scene:create( event )
       composer.gotoScene("scenes.gameMed")
    end
 
+   backBtn:addEventListener("tap", gotoMenu)
    gameMedBtn:addEventListener("tap", gotoGameMed)
 end
 
