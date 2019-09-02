@@ -48,7 +48,7 @@ function scene:create( event )
    titulo.y = 130
    menuGrupo:insert(titulo)
 
-   gameMedBtn = display.newImage("image/jogarBtn.png")
+   gameMedBtn = display.newImage("image/JogarBtn.png")
    gameMedBtn.x = display.contentCenterX
    gameMedBtn.y = display.contentCenterY+200
    gameMedBtn.xScale = 0.6
