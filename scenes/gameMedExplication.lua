@@ -39,7 +39,6 @@ function scene:create( event )
     uma vida.
     Boa sorte!]], 10, 0, native.systemFontBold, 40)
    explicationText:setFillColor( 0.50, 0.78, 1)
-   explicationText
    explicationText.x = display.contentCenterX-10
    explicationText.y = display.contentCenterY
    menuGrupo:insert(explicationText)
@@ -49,7 +48,7 @@ function scene:create( event )
    titulo.y = 130
    menuGrupo:insert(titulo)
 
-   gameMedBtn = display.newImage("image/medBtn.png")
+   gameMedBtn = display.newImage("image/jogarBtn.png")
    gameMedBtn.x = display.contentCenterX
    gameMedBtn.y = display.contentCenterY+200
    gameMedBtn.xScale = 0.6
