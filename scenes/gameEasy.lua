@@ -255,7 +255,7 @@ end
                     quantidadeVidas = quantidadeVidas + 1
                     criarVidas(quantidadeVidas)
                 elseif ( quantidadeVidas == 1) then
-                    quantidadeVidas = quantidadeVidas +2
+                    quantidadeVidas = quantidadeVidas + 2
                     criarVidas(quantidadeVidas)
                 end
                 event.target:removeSelf()
@@ -288,8 +288,9 @@ end
         vidas:insert(completaVida)
     end
 
+    principalGrupo:insert(vidas)
     moverVidasLoop = timer.performWithDelay(1, moverVidas, -1)
-    completaVidasLoop = timer.performWithDelay(3000, completaVidas, -1)
+    completaVidasLoop = timer.performWithDelay(30000, completaVidas, -1)
 
     function adicionarmeteorite()
         meteorite = display.newSprite( principalGrupo, sheet_Meteorite, sequences_Meteorite )
