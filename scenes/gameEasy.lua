@@ -209,7 +209,7 @@ end
                 explosionPixel:setSequence()
                 explosionPixel:play()
                 audio.play( explosionSound, { channel=6 })
-                audio.setVolume( 1.5, { channel=6 } )
+                audio.setVolume( 0.7, { channel=6 } )
                 explosionPixel.x = pixel.x
                 explosionPixel.y = pixel.y-60
                 event.target:removeSelf()

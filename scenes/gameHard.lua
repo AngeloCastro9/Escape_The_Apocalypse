@@ -79,13 +79,13 @@ function scene:create( event )
    audio.reserveChannels( 6 )
 
    clickSound = audio.loadSound("audio/Click.wav")
-   gameSound = audio.loadSound( "audio/gameMedSound.mp3" )
+   gameSound = audio.loadSound( "audio/gameHardSound.mp3" )
    shootSound = audio.loadSound("audio/shoot.mp3")
    explosionSound = audio.loadSound("audio/Explosion.mp3")
    meteorFireSound = audio.loadSound("audio/meteorFire.mp3")
 
     audio.play( gameSound, { channel=4, loops=-1 })
-    audio.setVolume( 0.5, { channel=4 } )
+    audio.setVolume( 0.3, { channel=4 } )
 
    --system.activate( "multitouch" )
    quantidadeVidas = 3
@@ -166,7 +166,7 @@ end
     function atirar(e)
         local tiro = display.newImage('image/shoot.png')
         audio.play( shootSound, { channel=5 })
-        audio.setVolume( 0.4, { channel=5 } )
+        audio.setVolume( 0.8, { channel=5 } )
         tiro.x = pixel.x
         tiro.y = pixel.y - pixel.height
         tiro.xScale = 4.0
@@ -214,7 +214,7 @@ end
                 explosionPixel:setSequence()
                 explosionPixel:play()
                 audio.play( explosionSound, { channel=6 })
-                audio.setVolume( 1.5, { channel=6 } )
+                audio.setVolume( 0.7, { channel=6 } )
                 explosionPixel.x = pixel.x
                 explosionPixel.y = pixel.y-60
                 event.target:removeSelf()
@@ -236,7 +236,7 @@ end
                 explosionPixel:setSequence()
                 explosionPixel:play()
                 audio.play( explosionSound, { channel=6 })
-                audio.setVolume( 1.5, { channel=6 } )
+                audio.setVolume( 0.7, { channel=6 } )
                 explosionPixel.x = pixel.x
                 explosionPixel.y = pixel.y-60
                 event.target:removeSelf()
