@@ -37,6 +37,8 @@ function scene:create( event )
     Os meteoros precisam ser destruídos.
     Ao tocarem o chão você irá perder 
     uma vida.
+    As vidas só serão recuperadas a cada
+    15 pontos consecutivos.
     Boa sorte!]], 10, 0, native.systemFontBold, 40)
    explicationText:setFillColor( 0.50, 0.78, 1)
    explicationText.x = display.contentCenterX-10

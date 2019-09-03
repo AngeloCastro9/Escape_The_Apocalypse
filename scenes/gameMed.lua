@@ -260,11 +260,11 @@ end
                 scoreTexto.text = "Score: "..score
                 contadorScore = contadorScore+1
             end
-            if contadorScore == 10 and quantidadeVidas < 4  then
+            if contadorScore == 15 and quantidadeVidas < 4  then
                 contadorScore = 0
                 quantidadeVidas = quantidadeVidas + 1
                 criarVidas(quantidadeVidas)
-            elseif contadorScore == 10 then
+            elseif contadorScore == 15 then
                 contadorScore = 0
             end
         end
