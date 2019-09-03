@@ -63,6 +63,8 @@ function scene:create( event )
    titulo = display.newImage('image/logo.png')
    titulo.x = display.contentCenterX
    titulo.y = 130
+   titulo.xScale = 1.5
+   titulo.yScale = 1.5
    menuGrupo:insert(titulo)
 
    rankBotao = display.newImage("image/rankBtn.png")
