@@ -89,7 +89,7 @@ function scene:create( event )
     audio.setVolume( 0.3, { channel=4 } )
 
    --system.activate( "multitouch" )
-   quantidadeVidas = 4
+   quantidadeVidas = 3
    score = 0
    contadorScore = 0
 
@@ -261,7 +261,7 @@ end
                 scoreTexto.text = "Score: "..score
                 contadorScore = contadorScore+1
             end
-            if contadorScore == 20 and quantidadeVidas < 4  then
+            if contadorScore == 20 and quantidadeVidas < 3  then
                 contadorScore = 0
                 quantidadeVidas = quantidadeVidas + 1
                 criarVidas(quantidadeVidas)
@@ -274,14 +274,11 @@ end
     function vidaColisao(event)
         if(event.phase == "began") then
             if(event.other.name == "PIXEL") then
-                if( quantidadeVidas == 3 ) then
+                if( quantidadeVidas == 2 ) then
                     quantidadeVidas = quantidadeVidas + 1
                     criarVidas(quantidadeVidas)
-                elseif ( quantidadeVidas == 2 ) then
+                elseif ( quantidadeVidas == 1 ) then
                     quantidadeVidas = quantidadeVidas + 2
-                    criarVidas(quantidadeVidas)
-                elseif(quantidadeVidas == 1) then
-                    quantidadeVidas = quantidadeVidas + 3
                     criarVidas(quantidadeVidas)
                 end
                 event.target:removeSelf()
