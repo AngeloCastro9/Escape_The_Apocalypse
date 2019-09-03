@@ -37,13 +37,13 @@ local sheetOptions_Meteorite =
 }
 local sheetOptions_ExplosionPixel =
 {
-    width = 200,
+    width = 190,
     height = 150,
     numFrames = 11
 }
 
 local sheet_Meteorite = graphics.newImageSheet( "image/meteorGreen.png", sheetOptions_Meteorite )
-local sheet_ExplosionPixel = graphics.newImageSheet( "image/explosionPixelMed.png", sheetOptions_ExplosionPixel)
+local sheet_ExplosionPixel = graphics.newImageSheet( "image/explosionPixelHard.png", sheetOptions_ExplosionPixel)
 
 -- sequences table
 local sequences_Meteorite = {
