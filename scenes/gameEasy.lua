@@ -164,7 +164,9 @@ end
         audio.play( shootSound, { channel=5 })
         audio.setVolume( 0.5, { channel=5 } )
         tiro.x = pixel.x
-        tiro.y = pixel.y - pixel.height
+        if(tiro.y ~= nil) then
+            tiro.y = pixel.y - pixel.height
+        end
         tiro.xScale = 4.0
         tiro.yScale = 4.0
         tiro.name = 'TIRO'
@@ -248,7 +250,7 @@ end
 
     function vidaColisao(event)
         if(event.phase == "began") then
-            if(event.other.name == "TIRO") then
+            if(event.other.name == "PIXEL") then
                 if( quantidadeVidas == 2 ) then
                     quantidadeVidas = quantidadeVidas + 1
                     criarVidas(quantidadeVidas)
@@ -257,9 +259,9 @@ end
                     criarVidas(quantidadeVidas)
                 end
                 event.target:removeSelf()
-                event.other:removeSelf()
-            elseif ( event.other.name == "PIXEL") then
+            elseif ( event.other.name == "TIRO") then
                 event.target:removeSelf()
+                event.other:removeSelf()
             end
         end
     end
