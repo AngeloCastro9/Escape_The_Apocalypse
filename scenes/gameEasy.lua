@@ -276,7 +276,7 @@ end
 
     function completaVidas()
         completaVida = display.newImage("image/heart.png")
-        completaVida.x = math.floor(math.random() * (display.contentWidth - meteorite.width) + 100)
+        completaVida.x = math.floor(math.random() * (display.contentWidth - completaVida.width) + 100)
         completaVida.y = -completaVida.height
         completaVida.xScale = 1.6
         completaVida.yScale = 1.6
@@ -287,7 +287,7 @@ end
     end
 
     moverVidasLoop = timer.performWithDelay(1, moverVidas, -1)
-    completaVidasLoop = timer.performWithDelay(30000, completaVidas, -1)
+    completaVidasLoop = timer.performWithDelay(3000, completaVidas, -1)
 
     function adicionarmeteorite()
         meteorite = display.newSprite( principalGrupo, sheet_Meteorite, sequences_Meteorite )
