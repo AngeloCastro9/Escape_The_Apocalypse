@@ -8,7 +8,7 @@ local backGroup = display.newGroup()
 local menuGrupo = display.newGroup()
 
 local titulo
-local gameMedBtn
+local gameHardBtn
 local backBtn
 local fundo
 local menuSound
@@ -27,18 +27,18 @@ function scene:create( event )
    audio.play( menuSound, { channel=1, loops=-1 })
    audio.setVolume(0.6, {channel=1})
 
-   fundo = display.newImage('image/backgroundMed.png', display.contentCenterX, display.contentCenterY)
+   fundo = display.newImage('image/backgroundHard.jpg', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
    fundo.height = display.contentHeight
    backGroup:insert(fundo)
 
    explicationText = display.newText([[
-    Você agora tem uma vida a mais. 
+    Você agora tem 3 vidas. 
     Os meteoros precisam ser destruídos.
     Ao tocarem o chão você irá perder 
     uma vida.
     As vidas só serão recuperadas a cada
-    15 pontos consecutivos.
+    20 pontos consecutivos.
     Boa sorte!]], 10, 0, native.systemFontBold, 40)
    explicationText:setFillColor( 0.50, 0.78, 1)
    explicationText.x = display.contentCenterX-10
@@ -50,12 +50,12 @@ function scene:create( event )
    titulo.y = 130
    menuGrupo:insert(titulo)
 
-   gameMedBtn = display.newImage("image/JogarBtn.png")
-   gameMedBtn.x = display.contentCenterX
-   gameMedBtn.y = display.contentCenterY+200
-   gameMedBtn.xScale = 0.6
-   gameMedBtn.yScale = 0.6
-   menuGrupo:insert(gameMedBtn)
+   gameHardBtn = display.newImage("image/JogarBtn.png")
+   gameHardBtn.x = display.contentCenterX
+   gameHardBtn.y = display.contentCenterY+200
+   gameHardBtn.xScale = 0.6
+   gameHardBtn.yScale = 0.6
+   menuGrupo:insert(gameHardBtn)
 
    backBtn = display.newImage("image/backBtn.png")
    backBtn.x = display.contentCenterX
@@ -70,16 +70,16 @@ function scene:create( event )
       composer.gotoScene("scenes.menu")
    end
 
-   function gotoGameMed()
+   function gotoGameHard()
       audio.stop( 1 )
       audio.stop( 3 )
       audio.play(clickSound, { channel=2 })
       audio.setVolume( 1.0, { channel=2 } )
-      composer.gotoScene("scenes.gameMed")
+      composer.gotoScene("scenes.gameHard")
    end
 
    backBtn:addEventListener("tap", gotoMenu)
-   gameMedBtn:addEventListener("tap", gotoGameMed)
+   gameHardBtn:addEventListener("tap", gotoGameHard)
 end
 
 function scene:show( event )
@@ -100,7 +100,7 @@ function scene:hide( event )
       display.remove(menuGrupo)
    elseif ( phase == "did" ) then
       audio.stop( 2 )
-      composer.removeScene( "gameMedExplication" )
+      composer.removeScene( "gameHardExplication" )
    end
 end
 

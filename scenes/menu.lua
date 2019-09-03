@@ -10,6 +10,7 @@ local menuGrupo = display.newGroup()
 local titulo
 local gameEasyBtn
 local gameMedBtn
+local gameHardBtn
 local fundo
 local rankBotao
 local meteorite
@@ -136,15 +137,31 @@ function scene:create( event )
       composer.gotoScene("scenes.gameMedExplication")
    end
 
+   gameHardBtn = display.newImage("image/hardBtn.png")
+   gameHardBtn.x = display.contentCenterX
+   gameHardBtn.y = display.contentCenterY+200
+   gameHardBtn.xScale = 0.6
+   gameHardBtn.yScale = 0.6
+   menuGrupo:insert(gameHardBtn)
+
    function gotoRank()
       audio.play(clickSound, { channel=2, loops=-1 })
       audio.setVolume( 1.0, { channel=2 } )
       composer.gotoScene("scenes.highscores")
    end
 
+   function gotoGameHard()
+      audio.stop( 1 )
+      audio.stop( 3 )
+      audio.play(clickSound, { channel=2 })
+      audio.setVolume( 2.0, { channel=2 } )
+      composer.gotoScene("scenes.gameHardExplication")
+   end
+
    rankBotao:addEventListener("tap", gotoRank)
    gameEasyBtn:addEventListener("tap", gotoGameEasy)
    gameMedBtn:addEventListener("tap", gotoGameMed)
+   gameHardBtn:addEventListener("tap", gotoGameHard)
 
 end
 
