@@ -16,6 +16,7 @@ local pixel
 local quantidadeVidas
 local meteorite
 local explosionPixel
+local completaVida
 local gameSound
 local shootSound
 local explosionSound
@@ -270,6 +271,55 @@ end
             end
         end
     end
+
+    function vidaColisao(event)
+        if(event.phase == "began") then
+            if(event.other.name == "PIXEL") then
+                if( quantidadeVidas == 3 ) then
+                    quantidadeVidas = quantidadeVidas + 1
+                    criarVidas(quantidadeVidas)
+                elseif ( quantidadeVidas == 2 ) then
+                    quantidadeVidas = quantidadeVidas + 2
+                    criarVidas(quantidadeVidas)
+                elseif(quantidadeVidas == 1) then
+                    quantidadeVidas = quantidadeVidas + 3
+                    criarVidas(quantidadeVidas)
+                end
+                event.target:removeSelf()
+            elseif ( event.other.name == "TIRO") then
+                event.target:removeSelf()
+                event.other:removeSelf()
+            elseif( event.other.name == "CHAO") then
+                event.target:removeSelf()
+            end
+        end
+    end
+
+    local vidas = display.newGroup()
+    function moverVidas()
+        for a = 0, vidas.numChildren, 1 do
+            if vidas[a] ~= nil and vidas[a].x ~= nil then
+                vidas[a].y = vidas[a].y + 10
+            end            
+        end
+    end
+
+    function completaVidas()
+        completaVida = display.newImage("image/heart.png")
+        completaVida.x = math.floor(math.random() * (display.contentWidth - completaVida.width) + 100)
+        completaVida.y = -completaVida.height
+        completaVida.xScale = 1.6
+        completaVida.yScale = 1.6
+        completaVida.name = "completaVida"
+        physics.addBody(completaVida, "dynamic", { density=3.0, friction=0.8, bounce=0.3, shape=pentagonShape } )
+        completaVida:addEventListener('collision', vidaColisao)
+        vidas:insert(completaVida)
+    end
+
+    principalGrupo:insert(vidas)
+    moverVidasLoop = timer.performWithDelay(1, moverVidas, -1)
+    completaVidasLoop = timer.performWithDelay(40000, completaVidas, -1)
+
     function adicionarmeteorite()
         meteorite = display.newSprite( principalGrupo, sheet_Meteorite, sequences_Meteorite )
         meteorite:setSequence()
@@ -323,9 +373,12 @@ function scene:hide( event )
        display.remove(fundoGrupo)
        display.remove(meteorites)       
        display.remove(principalGrupo)
+       display.remove(completaVida)
        display.remove(uiGrupo)
        display.remove(vidasGrupo)
 
+       timer.cancel(moverVidasLoop)
+       timer.cancel(completaVidasLoop)
        timer.cancel(moverTiroLoop)
        timer.cancel(movermeteoriteLoop)
        timer.cancel(criarmeteoriteLoop) 
