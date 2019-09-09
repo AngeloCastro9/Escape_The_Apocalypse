@@ -23,6 +23,7 @@ local clickSound
 local meteorFireSound
 local completaVida
 local timeMeteor = 900
+local velocidadeMeteorite = 10
 
 local scoreTexto
 local score
@@ -182,7 +183,7 @@ end
     function movermeteorite()
         for a = 0, meteorites.numChildren, 1 do
             if meteorites[a] ~= nil and meteorites[a].x ~= nil then
-                meteorites[a].y = meteorites[a].y + 10
+                meteorites[a].y = meteorites[a].y + velocidadeMeteorite
             end            
         end
     end
@@ -308,8 +309,10 @@ end
         meteorite:addEventListener('collision', meteoriteColisao)    
         if( score > 20 and score < 50 ) then
             timeMeteor = 800
+            velocidadeMeteorite = 13 
         elseif( score > 50 ) then
             timeMeteor = 700
+            velocidadeMeteorite = 15
         end
     end
     principalGrupo:insert(meteorites)
