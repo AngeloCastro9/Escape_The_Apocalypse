@@ -70,23 +70,30 @@ function scene:create( event )
    rankBotao = display.newImage("image/rankBtn.png")
    rankBotao.x = display.contentCenterX
    rankBotao.y = display.contentCenterY+350
-   rankBotao.xScale = 0.6
-   rankBotao.yScale = 0.6
+   rankBotao.xScale = 0.5
+   rankBotao.yScale = 0.5
    menuGrupo:insert(rankBotao)
 
    gameEasyBtn = display.newImage("image/easyBtn.png")
    gameEasyBtn.x = display.contentCenterX
    gameEasyBtn.y = display.contentCenterY
-   gameEasyBtn.xScale = 0.6
-   gameEasyBtn.yScale = 0.6
+   gameEasyBtn.xScale = 0.5
+   gameEasyBtn.yScale = 0.5
    menuGrupo:insert(gameEasyBtn)
 
    gameMedBtn = display.newImage("image/medBtn.png")
    gameMedBtn.x = display.contentCenterX
    gameMedBtn.y = display.contentCenterY+100
-   gameMedBtn.xScale = 0.6
-   gameMedBtn.yScale = 0.6
+   gameMedBtn.xScale = 0.5
+   gameMedBtn.yScale = 0.5
    menuGrupo:insert(gameMedBtn)
+
+   gameHardBtn = display.newImage("image/hardBtn.png")
+   gameHardBtn.x = display.contentCenterX
+   gameHardBtn.y = display.contentCenterY+200
+   gameHardBtn.xScale = 0.5
+   gameHardBtn.yScale = 0.5
+   menuGrupo:insert(gameHardBtn)
 
    local meteorites = display.newGroup()
     function movermeteorite()
@@ -138,13 +145,6 @@ function scene:create( event )
       audio.setVolume( 1.0, { channel=2 } )
       composer.gotoScene("scenes.gameMedExplication")
    end
-
-   gameHardBtn = display.newImage("image/hardBtn.png")
-   gameHardBtn.x = display.contentCenterX
-   gameHardBtn.y = display.contentCenterY+200
-   gameHardBtn.xScale = 0.6
-   gameHardBtn.yScale = 0.6
-   menuGrupo:insert(gameHardBtn)
 
    function gotoRank()
       audio.play(clickSound, { channel=2, loops=-1 })
