@@ -7,7 +7,8 @@ local scene = composer.newScene()
 local backGroup = display.newGroup()
 local menuGrupo = display.newGroup()
 
-local titulo
+local titulo1
+local titulo2
 local gameEasyBtn
 local gameMedBtn
 local gameHardBtn
@@ -60,12 +61,19 @@ function scene:create( event )
    fundo.height = display.contentHeight
    backGroup:insert(fundo)
 
-   titulo = display.newImage('image/logo.png')
-   titulo.x = display.contentCenterX
-   titulo.y = 130
-   titulo.xScale = 1.5
-   titulo.yScale = 1.5
-   menuGrupo:insert(titulo)
+   titulo1 = display.newImage('image/escape.png')
+   titulo1.x = display.contentCenterX
+   titulo1.y = 200
+   titulo1.xScale = 2.3
+   titulo1.yScale = 2.3
+   menuGrupo:insert(titulo1)
+
+   titulo2 = display.newImage('image/te.png')
+   titulo2.x = display.contentCenterX
+   titulo2.y = 300   
+   titulo2.xScale = 3.3
+   titulo2.yScale = 3.3 
+   menuGrupo:insert(titulo2)
 
    rankBotao = display.newImage("image/rankBtn.png")
    rankBotao.x = display.contentCenterX
