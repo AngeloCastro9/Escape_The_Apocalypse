@@ -18,6 +18,7 @@ local meteorite
 local explosionPixel
 local gameSound
 local shootSound
+local life
 local explosionSound
 local clickSound
 local meteorFireSound
@@ -74,12 +75,14 @@ function scene:create( event )
 
    local sceneGroup = self.view
 
+   audio.reserveChannels( 1 )
    audio.reserveChannels( 2 )
    audio.reserveChannels( 3 )
    audio.reserveChannels( 4 )
    audio.reserveChannels( 5 )
    audio.reserveChannels( 6 )
 
+   life = audio.loadSound("audio/life_pickup.mp3")
    clickSound = audio.loadSound("audio/Click.wav")
    gameSound = audio.loadSound( "audio/GameEasySound.mp3" )
    shootSound = audio.loadSound("audio/shoot.mp3")
@@ -252,6 +255,8 @@ end
     function vidaColisao(event)
         if(event.phase == "began") then
             if(event.other.name == "PIXEL") then
+                audio.play( life, { channel=1 })
+                audio.setVolume( 1.0, { channel=1 } )             
                 if( quantidadeVidas == 2 ) then
                     quantidadeVidas = quantidadeVidas + 1
                     criarVidas(quantidadeVidas)

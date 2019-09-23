@@ -5,9 +5,10 @@ composer.recycleOnSceneChange = true
 local scene = composer.newScene()
 
 local backGroup = display.newGroup()
-local menuGrupo = display.newGroup()
+local frontGrupo = display.newGroup()
 
-local titulo
+local titulo1
+local titulo2
 local gameMedBtn
 local backBtn
 local fundo
@@ -43,26 +44,35 @@ function scene:create( event )
    explicationText:setFillColor( 0.50, 0.78, 1)
    explicationText.x = display.contentCenterX-10
    explicationText.y = display.contentCenterY
-   menuGrupo:insert(explicationText)
+   frontGrupo:insert(explicationText)
 
-   titulo = display.newImage('image/logo.png')
-   titulo.x = display.contentCenterX
-   titulo.y = 130
-   menuGrupo:insert(titulo)
+   titulo1 = display.newImage('image/escape.png')
+   titulo1.x = display.contentCenterX
+   titulo1.y = 200
+   titulo1.xScale = 2.3
+   titulo1.yScale = 2.3
+   frontGrupo:insert(titulo1)
+
+   titulo2 = display.newImage('image/te.png')
+   titulo2.x = display.contentCenterX
+   titulo2.y = 300   
+   titulo2.xScale = 3.3
+   titulo2.yScale = 3.3 
+   frontGrupo:insert(titulo2)
 
    gameMedBtn = display.newImage("image/JogarBtn.png")
    gameMedBtn.x = display.contentCenterX
    gameMedBtn.y = display.contentCenterY+200
    gameMedBtn.xScale = 0.6
    gameMedBtn.yScale = 0.6
-   menuGrupo:insert(gameMedBtn)
+   frontGrupo:insert(gameMedBtn)
 
    backBtn = display.newImage("image/backBtn.png")
    backBtn.x = display.contentCenterX
    backBtn.y = display.contentCenterY+290
    backBtn.xScale = 0.6
    backBtn.yScale = 0.6
-   menuGrupo:insert(backBtn)
+   frontGrupo:insert(backBtn)
 
    function gotoMenu()
       audio.play(clickSound, { channel=2 })
@@ -97,7 +107,7 @@ function scene:hide( event )
 
    if ( phase == "will" ) then
       display.remove(backGroup)
-      display.remove(menuGrupo)
+      display.remove(frontGrupo)
    elseif ( phase == "did" ) then
       audio.stop( 2 )
       composer.removeScene( "gameMedExplication" )
