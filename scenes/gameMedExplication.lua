@@ -28,7 +28,7 @@ function scene:create( event )
    audio.play( menuSound, { channel=1, loops=-1 })
    audio.setVolume(0.6, {channel=1})
 
-   fundo = display.newImage('image/backgroundMed.png', display.contentCenterX, display.contentCenterY)
+   fundo = display.newImage('image/quadrado.png', display.contentCenterX, display.contentCenterY)
    fundo.width = display.contentWidth
    fundo.height = display.contentHeight
    backGroup:insert(fundo)
