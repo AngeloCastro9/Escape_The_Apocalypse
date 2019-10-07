@@ -24,7 +24,7 @@ local chaoInvisivel
 local life
 local meteorFireSound
 local timeMeteor = 900
-local velocidadeMeteorite = 11
+local velocidadeMeteorite = 15
 
 local scoreTexto
 local score
@@ -343,10 +343,10 @@ end
 
         if( score > 20 and score < 50 ) then
             timeMeteor = 800
-            velocidadeMeteorite = 13
+            velocidadeMeteorite = 17
         elseif( score > 50 ) then
             timeMeteor = 700
-            velocidadeMeteorite = 15
+            velocidadeMeteorite = 19
         end
     end
     principalGrupo:insert(meteorites)
