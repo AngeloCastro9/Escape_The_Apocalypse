@@ -143,7 +143,7 @@ function scene:create( event )
       audio.stop( 3 )
       audio.play(clickSound, { channel=2 })
       audio.setVolume( 2.0, { channel=2 } )
-      composer.gotoScene("scenes.gameEasy")
+      composer.gotoScene("scenes.gameEasyExplication")
    end
 
    function gotoGameMed()
