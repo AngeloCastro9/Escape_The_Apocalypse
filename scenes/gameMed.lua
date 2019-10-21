@@ -390,10 +390,6 @@ function scene:hide( event )
        if (explosionPixelTimeLoop ~= nil) then
         timer.cancel(explosionPixelTimeLoop)
        end       
-       if(explosionMeteoriteTimeLoop ~= nil) then
-        timer.cancel(explosionMeteoriteTimeLoop)  
-       end       
-
    elseif ( phase == "did" ) then
     audio.stop( 2 )
     audio.stop( 3 )
