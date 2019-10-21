@@ -173,20 +173,20 @@ function scene:hide( event )
 
    if ( phase == "will" ) then
       
-      if (meteorites ~= nil) then
-        meteorite:removeEventListener('collision', meteoriteColisao) 
-       end
-       display.remove(meteorites)
-       display.remove(backGroup)
-       display.remove(frontGrupo)
+      --if (meteorites ~= nil) then
+        --meteorite:removeEventListener('collision', meteoriteColisao) 
+      --end
+      display.remove(meteorites)
+      display.remove(backGroup)
+      display.remove(frontGrupo)
       timer.cancel(movermeteoriteLoop)
       timer.cancel(criarmeteoriteLoop) 
       if (explosionPixelTimeLoop ~= nil) then
           timer.cancel(explosionPixelTimeLoop)
       end       
-      if(removeexplosionMeteor ~= nil) then
-        timer.cancel(removeexplosionMeteor)  
-      end   
+      --if(removeexplosionMeteor ~= nil) then
+        --timer.cancel(removeexplosionMeteor)  
+      --end   
    elseif ( phase == "did" ) then
         audio.stop( 2 )
         audio.stop( 3 )
