@@ -19,6 +19,8 @@ local explosionSound
 local meteorite
 local meteorFireSound
 local explosionMeteor
+local contador = 0
+local velocidadeMeteorite = 10000
 
 local sheetOptions_Meteorite =
 {
@@ -33,7 +35,7 @@ local sheetOptions_ExplosionMeteor =
     numFrames = 11
 }
 
-local sheet_Meteorite = graphics.newImageSheet( "image/meteorBlue.png", sheetOptions_Meteorite )
+local sheet_Meteorite = graphics.newImageSheet( "image/meteor.png", sheetOptions_Meteorite )
 local sheet_ExplosionMeteor = graphics.newImageSheet( "image/explosionPixelMed.png", sheetOptions_ExplosionMeteor)
 
 -- sequences table
@@ -91,11 +93,11 @@ function scene:create( event )
    fundo.height = display.contentHeight
    backGroup:insert(fundo)
 
-   backBtn = display.newImage("image/backBtn.png")
-   backBtn.x = display.contentCenterX
-   backBtn.y = display.contentCenterY+290
-   backBtn.xScale = 0.6
-   backBtn.yScale = 0.6
+   backBtn = display.newImage("image/HomeButton.png")
+   backBtn.x = display.contentWidth -80 
+   backBtn.y = display.contentHeight-945
+   --backBtn.xScale = 0.6
+   --backBtn.yScale = 0.6
    frontGrupo:insert(backBtn)
 
    function gotoMenu()
@@ -135,12 +137,12 @@ function adicionarmeteorite()
     local pentagonShape = { -50, 130, 50,-110, 70,130, 26,50, -50,-80 }
     physics.addBody(meteorite, "dynamic", { density=3.0, friction=0.8, bounce=0.3, shape=pentagonShape } )
     meteorites:insert(meteorite)
-    meteorite:addEventListener('collision', meteoriteColisao)    
+    meteorite:addEventListener('collision', meteoriteColisao)  
     --adicionar um contador, quando acertar uma vez, deixar a queda dos meteoros mais rapida
 end
 frontGrupo:insert(meteorites)
 movermeteoriteLoop = timer.performWithDelay(1, movermeteorite, -1)
-criarmeteoriteLoop = timer.performWithDelay(10000, adicionarmeteorite, -1)
+criarmeteoriteLoop = timer.performWithDelay(velocidadeMeteorite, adicionarmeteorite, -1)
 
 function meteoriteColisao(event)
     if(event.phase == "began") then
@@ -154,6 +156,13 @@ function meteoriteColisao(event)
             explosionMeteor.y = meteorite.y
             explosionMeteorTimeLoop = timer.performWithDelay(500, removeexplosionMeteor, -1)
             event.target:removeSelf()
+            contador = contador + 1
+            print(contador)  
+            print(velocidadeMeteorite)
+            velocidadeMeteorite = 3000
+            if(contador == 2)then
+                composer.gotoScene("scenes.menu")
+            end
         end
     end
 end
