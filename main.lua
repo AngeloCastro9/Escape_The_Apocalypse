@@ -1,3 +1,3 @@
 local composer = require( "composer" )
 
-composer.gotoScene("scenes.history1")
+composer.gotoScene("scenes.menu")

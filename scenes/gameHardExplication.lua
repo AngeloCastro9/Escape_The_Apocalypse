@@ -41,7 +41,7 @@ function scene:create( event )
     As vidas só serão recuperadas a cada
     20 pontos consecutivos.
     Boa sorte!]], 10, 0, native.systemFontBold, 40)
-   explicationText:setFillColor( 0.50, 0.78, 1)
+   explicationText:setFillColor( 90, 15, 150)
    explicationText.x = display.contentCenterX-10
    explicationText.y = display.contentCenterY
    frontGrupo:insert(explicationText)
