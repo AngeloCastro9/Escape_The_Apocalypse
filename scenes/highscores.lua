@@ -94,8 +94,8 @@ function scene:create( event )
 	local highScoresHeader = display.newImage('image/highScore.png')
 	highScoresHeader.x = display.contentCenterX
 	highScoresHeader.y = 130
-	highScoresHeader.xScale = 1.4
-	highScoresHeader.yScale = 1.4
+	highScoresHeader.xScale = 2.4
+	highScoresHeader.yScale = 2.4
 
 	local meteorites = display.newGroup()
     function movermeteorite()
